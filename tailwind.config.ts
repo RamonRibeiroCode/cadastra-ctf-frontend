@@ -19,6 +19,8 @@ const config: Config = {
 
         neutral: {
           gray: "#9899ac",
+          "gray-secondary": "#cdcdde",
+          "gray-tertiary": "#565674",
           "gray-blue": "#494b74",
         },
       },

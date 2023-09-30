@@ -62,7 +62,7 @@ export default function MenuItem({
 
         {menuOpenedOrHovered && (
           <span
-            className={`text-sm group-hover:text-white min-w-[140px] ml-1 ${
+            className={`text-sm group-hover:text-white min-w-[140px] ml-2 ${
               active ? "text-white" : "text-neutral-gray"
             }`}
           >
