@@ -56,7 +56,7 @@ export default function SideBar() {
       onMouseLeave={() => setOnHover(false)}
     >
       <div
-        className={`flex items-center bg-primary-dark h-16 ${
+        className={`flex items-center bg-primary-medium h-16 ${
           openedOrHovered ? "justify-between pl-6" : "justify-center"
         }`}
       >

@@ -11,6 +11,7 @@ const config: Config = {
       colors: {
         primary: {
           default: "#1e1e2d",
+          medium: "#1a1a27",
           dark: "#151521",
           "dark-light": "#1b1b28",
           light: "#4c4e6f",
@@ -23,6 +24,7 @@ const config: Config = {
           "gray-tertiary": "#565674",
           "gray-quaternary": "#474761",
           "gray-quinary": "#6d6d80",
+          "gray-senary": "#323248",
           "gray-blue": "#494b74",
           "gray-light": "#323248",
         },

@@ -29,7 +29,7 @@ export default function ChallengeListItem({
 }: ChallengeListItemProps) {
   return (
     <li className="flex bg-primary-default rounded-lg">
-      <Link href={`/challenges/${id}`} className="p-9 flex-1">
+      <Link href={`/challenges/${id}`} className="p-7 flex-1">
         <div
           className="bg-neutral-gray-light w-[50px] h-[50px] rounded-md border"
           style={{ borderColor: getChallengeDifficultyColor(difficulty) }}
