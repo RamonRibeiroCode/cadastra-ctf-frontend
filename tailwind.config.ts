@@ -21,7 +21,10 @@ const config: Config = {
           gray: "#9899ac",
           "gray-secondary": "#cdcdde",
           "gray-tertiary": "#565674",
+          "gray-quaternary": "#474761",
+          "gray-quinary": "#6d6d80",
           "gray-blue": "#494b74",
+          "gray-light": "#323248",
         },
       },
       backgroundImage: {

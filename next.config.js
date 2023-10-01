@@ -8,6 +8,12 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "app.safecodeweek.com.br",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
 };

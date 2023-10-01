@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import DoubleArrow from "../icons/DoubleArrow";
-import M3Logo from "../icons/M3Logo";
-import MenuItem, { MenuIcon } from "./MenuItem";
+import DoubleArrow from "../../icons/DoubleArrow";
+import M3Logo from "../../icons/M3Logo";
+import MenuItem, { MenuIcon } from "../MenuItem";
 import { usePathname } from "next/navigation";
-import MenuTitle from "./MenuTitle";
+import MenuTitle from "../MenuTitle";
 
 export interface IMenuItem {
   title: string;
