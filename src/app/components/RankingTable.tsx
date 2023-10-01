@@ -21,7 +21,7 @@ export default function RankingTable({}: RankingTableProps) {
           </tr>
         </thead>
         <tbody>
-          {[1, 2, 3].map((item, index) => (
+          {[1, 2, 3, 4].map((item, index) => (
             <RankingTableRow key={item} position={index + 1} />
           ))}
         </tbody>

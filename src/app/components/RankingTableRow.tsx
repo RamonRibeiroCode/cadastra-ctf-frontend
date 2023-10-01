@@ -27,14 +27,14 @@ export default function RankingTableRow({ position }: RankingTableRowProps) {
   };
 
   return (
-    <tr>
-      <td>
+    <tr className="border-b border-[#2b2b40]">
+      <td className="py-4">
         <div className="flex items-center text-white">
           <span className="mr-2">{position}°</span>
           {isOnPodium && <Trophy fill={getFillTrophy()} />}
         </div>
       </td>
-      <td>
+      <td className="py-4">
         <div
           className="symbol symbol-circle symbol-45px"
           data-bs-toggle="tooltip"
@@ -51,7 +51,7 @@ export default function RankingTableRow({ position }: RankingTableRowProps) {
           />
         </div>
       </td>
-      <td>
+      <td className="py-4">
         <div className="flex flex-col ml-4">
           <a href="#" className="text-white font-medium text-sm">
             davi_guimaraes_ext
@@ -61,7 +61,7 @@ export default function RankingTableRow({ position }: RankingTableRowProps) {
             Level 2
           </span>
 
-          <div className="flex text-xs font-medium text-neutral-gray-quaternary mb-5">
+          <div className="flex text-xs font-medium text-neutral-gray-quaternary">
             <span>First Blood</span>
 
             <Blood />
@@ -69,7 +69,7 @@ export default function RankingTableRow({ position }: RankingTableRowProps) {
         </div>
       </td>
 
-      <td className="text-end">
+      <td className="py-4 text-end">
         <span className="px-1.5 py-0.5 rounded text-[11px] font-semibold bg-[#1c3238] text-[#0bb783]">
           12m
         </span>
