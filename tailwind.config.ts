@@ -26,7 +26,6 @@ const config: Config = {
           "gray-quinary": "#6d6d80",
           "gray-senary": "#323248",
           "gray-blue": "#494b74",
-          "gray-light": "#323248",
         },
       },
       backgroundImage: {

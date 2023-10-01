@@ -12,6 +12,7 @@ import Trophy from "../../../icons/Trophy";
 import ListNested from "../../../icons/ListNested";
 import RankingTable from "../../../components/RankingTable";
 import ChallengeOverview from "../../../components/ChallengeOverview";
+import Hacktivity from "../../../components/Hacktivity";
 
 interface ChallengeDetailProps {
   params: {
@@ -90,7 +91,7 @@ export default function ChallengeDetail({ params }: ChallengeDetailProps) {
               <RankingTable />
             </div>
             <div className="flex-1">
-              <div className="flex items-center text-xs font-medium text-white">
+              <div className="flex items-center text-xs font-medium text-white mb-10">
                 <ListNested />
 
                 <span className="mx-2">Hacktivity </span>
@@ -99,6 +100,10 @@ export default function ChallengeDetail({ params }: ChallengeDetailProps) {
                   - Últimas atividades neste desafio
                 </span>
               </div>
+
+              {[1, 2, 3, 4].map((item) => (
+                <Hacktivity key={item} />
+              ))}
             </div>
           </div>
         </div>

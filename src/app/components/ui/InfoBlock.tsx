@@ -8,7 +8,7 @@ interface InfoBlockProps {
 export default function InfoBlock({ children, extraClasses }: InfoBlockProps) {
   return (
     <div
-      className={`w-fit border border-neutral-gray-light border-dashed rounded min-w-[125px] py-3 px-4 ${extraClasses}`}
+      className={`w-fit border border-neutral-gray-senary border-dashed rounded min-w-[125px] py-3 px-4 ${extraClasses}`}
     >
       {children}
     </div>
