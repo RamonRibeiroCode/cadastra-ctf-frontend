@@ -8,6 +8,9 @@ import ClockHistory from "../../../icons/ClockHistory";
 import Stars from "../../../icons/Stars";
 import Blood from "../../../icons/Blood";
 import Gem from "../../../icons/Gem";
+import Trophy from "../../../icons/Trophy";
+import ListNested from "../../../icons/ListNested";
+import RankingTable from "../../../components/RankingTable";
 
 interface ChallengeDetailProps {
   params: {
@@ -135,11 +138,50 @@ export default function ChallengeDetail({ params }: ChallengeDetailProps) {
         </div>
 
         <div className="bg-primary-default rounded-lg p-7 my-7">
-          <span className="text-white">Progress Bar</span>
+          <div className="flex justify-between mb-4">
+            <span className="text-sm text-white">
+              <strong className="font-medium">
+                Seu progresso neste desafio é de:{" "}
+              </strong>
+              100%
+            </span>
+
+            <span className="text-sm text-white">
+              <strong className="font-medium">Flags: </strong>
+              1/1
+            </span>
+          </div>
+
+          <div className="w-full h-3 bg-white rounded-md" />
         </div>
 
         <div className="bg-primary-default rounded-lg p-7">
-          <span className="text-white">Rank and Hacktivity</span>
+          <div className="flex">
+            <div className="flex-1">
+              <div className="flex items-center text-xs font-medium text-white">
+                <Trophy />
+
+                <span className="mx-2">Machine Rank</span>
+
+                <span className="text-neutral-gray-tertiary">
+                  - Top 10 players
+                </span>
+              </div>
+
+              <RankingTable />
+            </div>
+            <div className="flex-1">
+              <div className="flex items-center text-xs font-medium text-white">
+                <ListNested />
+
+                <span className="mx-2">Hacktivity </span>
+
+                <span className="text-neutral-gray-tertiary">
+                  - Últimas atividades neste desafio
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
