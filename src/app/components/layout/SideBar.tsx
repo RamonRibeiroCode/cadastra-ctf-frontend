@@ -14,11 +14,11 @@ export interface IMenuItem {
 }
 
 const hackerLandMenuItems: IMenuItem[] = [
-  {
-    title: "Starting point",
-    href: "/",
-    icon: "collection-play-fill",
-  },
+  // {
+  //   title: "Starting point",
+  //   href: "/",
+  //   icon: "collection-play-fill",
+  // },
   {
     title: "Challenges",
     href: "/challenges",

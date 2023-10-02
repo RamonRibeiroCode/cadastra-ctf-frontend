@@ -12,7 +12,7 @@ export default function MenuTitle({
   return (
     <div className="pt-8 pb-2 px-6">
       <span
-        className={`text-primary-light text-xs ${
+        className={`text-primary-light text-xs tracking-wide ${
           menuOpenedOrHovered ? "" : "opacity-0"
         }`}
       >
