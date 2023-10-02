@@ -27,7 +27,7 @@ export default function RankingTableRow({ position }: RankingTableRowProps) {
   };
 
   return (
-    <tr className="border-b border-[#2b2b40]">
+    <tr className="border-b border-[#2b2b40] border-dashed">
       <td className="py-4">
         <div className="flex items-center text-white">
           <span className="mr-2">{position}°</span>
@@ -35,21 +35,13 @@ export default function RankingTableRow({ position }: RankingTableRowProps) {
         </div>
       </td>
       <td className="py-4">
-        <div
-          className="symbol symbol-circle symbol-45px"
-          data-bs-toggle="tooltip"
-          data-bs-boundary="window"
-          data-bs-placement="top"
-          title="davi_guimaraes_ext"
-        >
-          <Image
-            className="rounded-full"
-            src="https://assets.hackingclub.com/user/avatar/64ff03de5940f"
-            width={45}
-            height={45}
-            alt="img"
-          />
-        </div>
+        <Image
+          className="rounded-full"
+          src="https://assets.hackingclub.com/user/avatar/64ff03de5940f"
+          width={45}
+          height={45}
+          alt="img"
+        />
       </td>
       <td className="py-4">
         <div className="flex flex-col ml-4">

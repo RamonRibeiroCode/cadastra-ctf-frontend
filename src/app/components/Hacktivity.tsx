@@ -4,8 +4,12 @@ import Flag from "../icons/Flag";
 export default function Hacktivity() {
   return (
     <div className="flex mb-10">
-      <div className="w-10 h-10 flex justify-center items-center rounded-full bg-neutral-gray-senary text-[#0bb783]">
-        <Flag />
+      <div className="relative">
+        <div className="w-10 h-10 relative z-10 flex justify-center items-center rounded-full text-[#0bb783] bg-neutral-gray-senary">
+          <Flag />
+        </div>
+
+        <div className="border-l border-[#2b2b40] border-dashed absolute left-5 top-0 w-1 h-9" />
       </div>
 
       <div className="mt-1 ml-4">
