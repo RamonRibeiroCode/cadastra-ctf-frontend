@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import { getChallengeDifficultyColor } from "../../../helpers/challenge";
 import { challengesMock } from "../../../mocks/challenges";
-import DifficultyFlag from "../../../components/DifficultyFlag";
+import DifficultyFlag from "../../../components/ui/DifficultyFlag";
 import InfoBlock from "../../../components/ui/InfoBlock";
 import ClockHistory from "../../../icons/ClockHistory";
 import Stars from "../../../icons/Stars";

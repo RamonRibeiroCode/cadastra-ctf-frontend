@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { Difficulty } from "../mocks/challenges";
 import { getChallengeDifficultyColor } from "../helpers/challenge";
-import DifficultyFlag from "./DifficultyFlag";
+import DifficultyFlag from "./ui/DifficultyFlag";
 import InfoBlock from "./ui/InfoBlock";
 import Blood from "../icons/Blood";
 import ClockHistory from "../icons/ClockHistory";

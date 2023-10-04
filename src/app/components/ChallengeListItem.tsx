@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Difficulty } from "../mocks/challenges";
 import Link from "next/link";
 import { getChallengeDifficultyColor } from "../helpers/challenge";
-import DifficultyFlag from "./DifficultyFlag";
+import DifficultyFlag from "./ui/DifficultyFlag";
 import InfoBlock from "./ui/InfoBlock";
 import UserShield from "../icons/UserShield";
 import Blood from "../icons/Blood";

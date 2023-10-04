@@ -2,8 +2,8 @@ import {
   getChallengeDifficultyBackground,
   getChallengeDifficultyColor,
   getChallengeDifficultyLabel,
-} from "../helpers/challenge";
-import { Difficulty } from "../mocks/challenges";
+} from "../../helpers/challenge";
+import { Difficulty } from "../../mocks/challenges";
 
 interface DifficultyFlagProps {
   difficulty: Difficulty;
