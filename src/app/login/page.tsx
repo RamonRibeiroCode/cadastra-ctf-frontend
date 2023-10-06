@@ -1,10 +1,11 @@
 "use client";
 
-import { redirect } from "next/navigation";
-import LoginForm from "../components/LoginForm";
-import { useAuth } from "../contexts/AuthContext";
-import M3Logo from "../icons/M3Logo";
 import { useEffect } from "react";
+import { redirect } from "next/navigation";
+
+import LoginForm from "@/components/LoginForm";
+import { useAuth } from "@/contexts/AuthContext";
+import M3Logo from "@/icons/M3Logo";
 
 export default function Login() {
   const { isAuthenticated, loading } = useAuth();

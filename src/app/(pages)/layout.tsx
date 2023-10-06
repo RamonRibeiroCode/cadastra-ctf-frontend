@@ -1,11 +1,12 @@
 "use client";
 
-import SideBar from "../components/layout/SideBar";
-import TopBar from "../components/layout/TopBar";
-import Footer from "../components/layout/Footer";
-import { useAuth } from "../contexts/AuthContext";
-import { redirect } from "next/navigation";
 import { useEffect } from "react";
+
+import SideBar from "@/components/layout/SideBar";
+import TopBar from "@/components/layout/TopBar";
+import Footer from "@/components/layout/Footer";
+import { useAuth } from "@/contexts/AuthContext";
+import { redirect } from "next/navigation";
 
 export default function PagesLayout({
   children,
@@ -14,7 +15,7 @@ export default function PagesLayout({
 }) {
   const { isAuthenticated, loading } = useAuth();
 
-  // Keep in useEffect to prevent rrror in NextJs Router
+  // Keep in useEffect to prevent error in NextJs Router
   useEffect(() => {
     if (!isAuthenticated && !loading) {
       return redirect("/login");
