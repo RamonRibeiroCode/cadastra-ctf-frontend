@@ -10,9 +10,12 @@
   },
   "dependencies": {
     "@radix-ui/react-popover": "^1.0.7",
+    "axios": "^1.5.1",
     "next": "latest",
+    "nookies": "^2.5.2",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "swr": "^2.2.4"
   },
   "devDependencies": {
     "@types/node": "latest",

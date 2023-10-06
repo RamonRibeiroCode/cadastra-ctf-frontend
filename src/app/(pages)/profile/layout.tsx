@@ -1,9 +1,21 @@
+"use client";
+
 import Image from "next/image";
 import InfoBlock from "../../components/ui/InfoBlock";
 import ProfileLinks from "../../components/ProfileLinks";
 import ProfileContentWrapper from "../../components/ProfileContentWrapper";
+import useSWR from "swr";
+import { fetcher } from "../../lib/swr";
+
+const totalPossiblePoints = 1300;
 
 export default function Profile({ children }: { children: React.ReactNode }) {
+  const { data: user, isLoading } = useSWR("/users/profile", fetcher);
+
+  if (!user || isLoading) {
+    return null;
+  }
+
   return (
     <div className="py-7 w-full mx-auto max-w-7xl">
       <div className="w-full bg-primary-default rounded-lg p-[30px] pb-0 mb-8">
@@ -13,7 +25,7 @@ export default function Profile({ children }: { children: React.ReactNode }) {
               className="rounded-md"
               width={160}
               height={160}
-              src="https://assets.hackingclub.com/user/avatar/64ff03c8cd855"
+              src={user.avatarUrl}
               alt=""
             />
 
@@ -23,33 +35,23 @@ export default function Profile({ children }: { children: React.ReactNode }) {
           </div>
 
           <div>
-            <h1 className="text-xl font-semibold text-neutral-gray-secondary">
-              RAMON RAMOS EXT
+            <h1 className="text-xl uppercase font-semibold text-neutral-gray-secondary">
+              {user.name}
             </h1>
 
             <div className="flex space-x-5 mt-3">
-              <InfoBlock extraClasses="flex flex-col">
-                <span className="block text-xl font-semibold ml-1 text-white">
-                  0
-                </span>
-
-                <span className="block text-sm text-neutral-gray-quaternary  mt-auto">
-                  Level
-                </span>
-              </InfoBlock>
-
               <InfoBlock>
                 <span className="block text-xl font-semibold ml-1 text-white">
-                  0
+                  {user.points}
                 </span>
 
                 <div>
                   <span className="text-sm text-neutral-gray-quaternary">
-                    XP
+                    CP
                   </span>
                   <span className="text-xs text-neutral-gray-senary mt-auto">
                     {" "}
-                    - Experience
+                    - CTF Points
                   </span>
                 </div>
               </InfoBlock>
@@ -57,17 +59,19 @@ export default function Profile({ children }: { children: React.ReactNode }) {
               <div className="flex flex-col justify-end">
                 <div className="flex justify-between">
                   <span className="text-sm font-medium text-neutral-gray-quaternary leading-5">
-                    Rumo ao próximo nivel
+                    Progresso nos desafios
                   </span>
                   <span className="text-sm font-semibold text-white leading-5">
-                    0%
+                    {(user.points * 100) / totalPossiblePoints}%
                   </span>
                 </div>
 
                 <div className="w-[300px] h-1.5 rounded-md bg-[rgba(255,255,255,0.1)] mb-1">
                   <div
                     className="h-full bg-white rounded-md"
-                    style={{ width: "0%" }}
+                    style={{
+                      width: `${(user.points * 100) / totalPossiblePoints}%`,
+                    }}
                   />
                 </div>
               </div>

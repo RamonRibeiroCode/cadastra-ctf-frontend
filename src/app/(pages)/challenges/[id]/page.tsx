@@ -112,8 +112,8 @@ export default function ChallengeDetail({ params }: ChallengeDetailProps) {
   );
 }
 
-export async function generateStaticParams() {
-  return challengesMock.map((challenge) => ({
-    id: challenge.id.toString(),
-  }));
-}
+// export async function generateStaticParams() {
+//   return challengesMock.map((challenge) => ({
+//     id: challenge.id.toString(),
+//   }));
+// }

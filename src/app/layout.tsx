@@ -1,9 +1,8 @@
-import "./globals.css";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-import SideBar from "./components/layout/SideBar";
-import TopBar from "./components/layout/TopBar";
-import Footer from "./components/layout/Footer";
+
+import "./globals.css";
+import { AuthProvider } from "./contexts/AuthContext";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -21,19 +20,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="pt-br">
       <body className={poppins.className}>
-        <div className="flex min-h-screen">
-          <SideBar />
-
-          <div className="flex flex-col flex-1">
-            <TopBar />
-
-            <main className="bg-primary-dark flex-1">{children}</main>
-
-            <Footer />
-          </div>
-        </div>
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   );

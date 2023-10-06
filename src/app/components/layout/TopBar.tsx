@@ -3,8 +3,11 @@
 import * as Popover from "@radix-ui/react-popover";
 import Image from "next/image";
 import Link from "next/link";
+import { useAuth } from "../../contexts/AuthContext";
 
 export default function TopBar() {
+  const { handleLogout, user } = useAuth();
+
   return (
     <div className="flex w-full h-16 bg-primary-default px-7 justify-end items-center">
       <Popover.Root>
@@ -14,7 +17,7 @@ export default function TopBar() {
               className="rounded-md overflow-hidden"
               width={40}
               height={40}
-              src="https://assets.hackingclub.com/user/avatar/64ff03c8cd855"
+              src={user.avatar}
               alt=""
             />
           </button>
@@ -32,7 +35,7 @@ export default function TopBar() {
                 className="rounded-md overflow-hidden"
                 width={50}
                 height={50}
-                src="https://assets.hackingclub.com/user/avatar/64ff03c8cd855"
+                src={user.avatar}
                 alt=""
               />
 
@@ -62,7 +65,10 @@ export default function TopBar() {
             </div>
 
             <div className="flex items-center px-4 pt-2 pb-3">
-              <button className="flex w-full rounded-md px-4 py-2 text-sm font-medium text-neutral-gray-quinary hover:bg-[#212e48] hover:text-[#3699ff]">
+              <button
+                onClick={handleLogout}
+                className="flex w-full rounded-md px-4 py-2 text-sm font-medium text-neutral-gray-quinary hover:bg-[#212e48] hover:text-[#3699ff]"
+              >
                 Sair
               </button>
             </div>
