@@ -4,24 +4,33 @@ import * as Popover from "@radix-ui/react-popover";
 import Image from "next/image";
 import Link from "next/link";
 import { useAuth } from "@/contexts/AuthContext";
+import ImagePlaceholder from "@/icons/ImagePlaceholder";
 
 export default function TopBar() {
   const { handleLogout, user } = useAuth();
+
+  const avatarOrPlaceHolder = user.avatar ? (
+    <Image
+      className="rounded-md overflow-hidden"
+      width={40}
+      height={40}
+      src={user.avatar}
+      alt=""
+    />
+  ) : (
+    <div className="flex items-center justify-center w-10 h-10 rounded-md border border-neutral-gray-senary border-dashed text-neutral-gray">
+      <ImagePlaceholder />
+    </div>
+  );
 
   return (
     <div className="flex w-full h-16 bg-primary-default px-7 justify-end items-center">
       <Popover.Root>
         <Popover.Trigger asChild>
-          <button aria-label="Profile">
-            {user.avatar && (
-              <Image
-                className="rounded-md overflow-hidden"
-                width={40}
-                height={40}
-                src={user.avatar}
-                alt=""
-              />
-            )}
+          <button className="flex items-center space-x-3" aria-label="Profile">
+            <span className="text-white text-sm">{user.name}</span>
+
+            {avatarOrPlaceHolder}
           </button>
         </Popover.Trigger>
 
@@ -33,13 +42,7 @@ export default function TopBar() {
             sideOffset={10}
           >
             <div className="flex items-center p-5">
-              <Image
-                className="rounded-md overflow-hidden"
-                width={50}
-                height={50}
-                src={user.avatar}
-                alt=""
-              />
+              {avatarOrPlaceHolder}
 
               <div className="ml-4 flex flex-col">
                 <span className="font-medium text-white">RAMON RAMOS EXT</span>

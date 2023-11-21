@@ -32,8 +32,6 @@ export default function LoginForm() {
     } catch (err) {
       const { message } = handleError(err);
 
-      console.log(message);
-
       setErrorMessage(message);
     }
   };

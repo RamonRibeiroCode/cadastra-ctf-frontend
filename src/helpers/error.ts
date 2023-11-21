@@ -7,8 +7,6 @@ interface AppError {
 
 export const handleError = (err: unknown): AppError => {
   if (err instanceof AxiosError && err.response?.data.message) {
-    console.log(err.response.data.message);
-
     return {
       message: err.response.data.message,
       code: err.response.status,

@@ -20,6 +20,7 @@ interface AuthContext {
   user: User | null;
   handleLogin: (email: string, password: string) => Promise<void>;
   handleLogout: () => void;
+  updateLoggedUser: (name: string, avatarUrl: string) => void;
 }
 
 interface User {
@@ -70,6 +71,21 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     push("/login");
   }, [push]);
 
+  const updateLoggedUser = useCallback(
+    (name: string, avatarUrl: string) => {
+      setUser((prevUser) => {
+        setCookie(
+          undefined,
+          "m3ctf.user",
+          JSON.stringify({ ...user, name, avatar: avatarUrl })
+        );
+
+        return { ...prevUser, name, avatar: avatarUrl };
+      });
+    },
+    [user]
+  );
+
   const loadStoragedData = async () => {
     const { "m3ctf.token": token, "m3ctf.user": storagedUser } = parseCookies();
 
@@ -97,8 +113,16 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       user,
       handleLogin,
       handleLogout,
+      updateLoggedUser,
     }),
-    [handleLogin, handleLogout, loading, isAuthenticated, user]
+    [
+      handleLogin,
+      handleLogout,
+      loading,
+      isAuthenticated,
+      updateLoggedUser,
+      user,
+    ]
   );
 
   return (

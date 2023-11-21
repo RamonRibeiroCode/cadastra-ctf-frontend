@@ -7,6 +7,7 @@ import InfoBlock from "@/components/ui/InfoBlock";
 import ProfileLinks from "@/components/ProfileLinks";
 import ProfileContentWrapper from "@/components/ProfileContentWrapper";
 import { fetcher } from "@/lib/swr";
+import ImagePlaceholder from "@/icons/ImagePlaceholder";
 
 const totalPossiblePoints = 1300;
 
@@ -22,14 +23,18 @@ export default function Profile({ children }: { children: React.ReactNode }) {
       <div className="w-full bg-primary-default rounded-lg p-[30px] pb-0 mb-8">
         <div className="flex">
           <div className="relative mr-6">
-            {user.avatarUrl && (
+            {user.avatarUrl ? (
               <Image
-                className="rounded-md"
+                className="rounded-md overflow-hidden"
                 width={125}
                 height={125}
                 src={user.avatarUrl}
                 alt=""
               />
+            ) : (
+              <div className="flex items-center justify-center w-[125px] h-[125px] rounded-md border border-neutral-gray-senary border-dashed text-neutral-gray">
+                <ImagePlaceholder width={45} height={45} />
+              </div>
             )}
 
             <div className="flex justify-center items-center w-5 h-5 bg-white rounded-full absolute left-full bottom-7 -translate-x-1/2">
