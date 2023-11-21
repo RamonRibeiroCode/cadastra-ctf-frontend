@@ -2,7 +2,7 @@ import { Difficulty } from "@/mocks/challenges";
 
 export const getChallengeDifficultyColor = (difficulty: Difficulty) => {
   switch (difficulty) {
-    case "easy":
+    case "EASY":
       return "#0bb783";
 
     case "medium":
@@ -21,7 +21,7 @@ export const getChallengeDifficultyColor = (difficulty: Difficulty) => {
 
 export const getChallengeDifficultyBackground = (difficulty: Difficulty) => {
   switch (difficulty) {
-    case "easy":
+    case "EASY":
       return "#1c3238";
 
     case "medium":
@@ -40,7 +40,7 @@ export const getChallengeDifficultyBackground = (difficulty: Difficulty) => {
 
 export const getChallengeDifficultyLabel = (difficulty: Difficulty) => {
   switch (difficulty) {
-    case "easy":
+    case "EASY":
       return "Fácil";
 
     case "medium":

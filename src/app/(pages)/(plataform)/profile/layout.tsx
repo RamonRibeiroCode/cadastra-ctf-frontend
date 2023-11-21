@@ -8,11 +8,12 @@ import ProfileLinks from "@/components/ProfileLinks";
 import ProfileContentWrapper from "@/components/ProfileContentWrapper";
 import { fetcher } from "@/lib/swr";
 import ImagePlaceholder from "@/icons/ImagePlaceholder";
+import { User } from "@/typings/user";
 
 const totalPossiblePoints = 1300;
 
 export default function Profile({ children }: { children: React.ReactNode }) {
-  const { data: user, isLoading } = useSWR("/users/profile", fetcher);
+  const { data: user, isLoading } = useSWR<User>("/users/profile", fetcher);
 
   if (!user || isLoading) {
     return null;

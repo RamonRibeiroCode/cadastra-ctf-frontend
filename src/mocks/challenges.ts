@@ -12,7 +12,7 @@ interface ChallengeListItem {
   activities: ChallengeActivity[];
 }
 
-export type Difficulty = "easy" | "medium" | "hard" | "insane";
+export type Difficulty = "EASY" | "MEDIUM" | "HARD" | "INSANE";
 
 interface ChallengeFirstBlood {
   name: string;
@@ -60,7 +60,7 @@ const defaultActivities: ChallengeActivity[] = [
       avatar: "https://assets.hackingclub.com/user/avatar/6500d8d348094",
     },
     flag: {
-      dificulty: "easy",
+      dificulty: "EASY",
       points: 150,
     },
   },
@@ -73,7 +73,7 @@ const defaultActivities: ChallengeActivity[] = [
       avatar: "https://assets.hackingclub.com/user/avatar/65018a641eae9",
     },
     flag: {
-      dificulty: "easy",
+      dificulty: "EASY",
       points: 150,
     },
   },
@@ -86,7 +86,7 @@ const defaultActivities: ChallengeActivity[] = [
       avatar: "https://assets.hackingclub.com/user/avatar/64ff051bdac16",
     },
     flag: {
-      dificulty: "easy",
+      dificulty: "EASY",
       points: 150,
     },
   },
@@ -99,7 +99,7 @@ const defaultActivities: ChallengeActivity[] = [
       avatar: "https://assets.hackingclub.com/user/avatar/64ff05ba00ebc",
     },
     flag: {
-      dificulty: "easy",
+      dificulty: "EASY",
       points: 150,
     },
   },
@@ -112,7 +112,7 @@ const defaultActivities: ChallengeActivity[] = [
       avatar: "https://assets.hackingclub.com/user/avatar/64ff10549b98a",
     },
     flag: {
-      dificulty: "easy",
+      dificulty: "EASY",
       points: 150,
     },
   },
@@ -125,7 +125,7 @@ const defaultActivities: ChallengeActivity[] = [
       avatar: "https://assets.hackingclub.com/user/avatar/64ff03daeabbe",
     },
     flag: {
-      dificulty: "easy",
+      dificulty: "EASY",
       points: 150,
     },
   },
@@ -138,7 +138,7 @@ const defaultActivities: ChallengeActivity[] = [
       avatar: "https://assets.hackingclub.com/user/avatar/64ff10510337a",
     },
     flag: {
-      dificulty: "easy",
+      dificulty: "EASY",
       points: 150,
     },
   },
@@ -151,7 +151,7 @@ const defaultActivities: ChallengeActivity[] = [
       avatar: "https://assets.hackingclub.com/user/avatar/64ff109652b80",
     },
     flag: {
-      dificulty: "easy",
+      dificulty: "EASY",
       points: 150,
     },
   },
@@ -164,7 +164,7 @@ const defaultActivities: ChallengeActivity[] = [
       avatar: "https://assets.hackingclub.com/user/avatar/64ff03daa449e",
     },
     flag: {
-      dificulty: "easy",
+      dificulty: "EASY",
       points: 150,
     },
   },
@@ -177,7 +177,7 @@ const defaultActivities: ChallengeActivity[] = [
       avatar: "https://assets.hackingclub.com/user/avatar/64ff03d1556b3",
     },
     flag: {
-      dificulty: "easy",
+      dificulty: "EASY",
       points: 150,
     },
   },
@@ -190,7 +190,7 @@ const defaultActivities: ChallengeActivity[] = [
       avatar: "https://assets.hackingclub.com/user/avatar/64ff03dcd2d06",
     },
     flag: {
-      dificulty: "easy",
+      dificulty: "EASY",
       points: 150,
     },
   },
@@ -203,7 +203,7 @@ const defaultActivities: ChallengeActivity[] = [
       avatar: "https://assets.hackingclub.com/user/avatar/64ff03cf6b062",
     },
     flag: {
-      dificulty: "easy",
+      dificulty: "EASY",
       points: 150,
     },
   },
@@ -216,7 +216,7 @@ const defaultActivities: ChallengeActivity[] = [
       avatar: "https://assets.hackingclub.com/user/avatar/64ff03cdacbc9",
     },
     flag: {
-      dificulty: "easy",
+      dificulty: "EASY",
       points: 150,
     },
   },
@@ -229,7 +229,7 @@ const defaultActivities: ChallengeActivity[] = [
       avatar: "https://assets.hackingclub.com/user/avatar/64ff041398320",
     },
     flag: {
-      dificulty: "easy",
+      dificulty: "EASY",
       points: 150,
     },
   },
@@ -242,7 +242,7 @@ const defaultActivities: ChallengeActivity[] = [
       avatar: "https://assets.hackingclub.com/user/avatar/64ff03d13b15c",
     },
     flag: {
-      dificulty: "easy",
+      dificulty: "EASY",
       points: 150,
     },
   },
@@ -255,7 +255,7 @@ const defaultActivities: ChallengeActivity[] = [
       avatar: "https://assets.hackingclub.com/user/avatar/64ff03d41e35d",
     },
     flag: {
-      dificulty: "easy",
+      dificulty: "EASY",
       points: 150,
     },
   },
@@ -268,7 +268,7 @@ const defaultActivities: ChallengeActivity[] = [
       avatar: "https://assets.hackingclub.com/user/avatar/64ff03ec1a9c8",
     },
     flag: {
-      dificulty: "easy",
+      dificulty: "EASY",
       points: 150,
     },
   },
@@ -281,7 +281,7 @@ const defaultActivities: ChallengeActivity[] = [
       avatar: "https://assets.hackingclub.com/user/avatar/65005bce5c44c",
     },
     flag: {
-      dificulty: "easy",
+      dificulty: "EASY",
       points: 150,
     },
   },
@@ -294,7 +294,7 @@ const defaultActivities: ChallengeActivity[] = [
       avatar: "https://assets.hackingclub.com/user/avatar/64ff0425a76e4",
     },
     flag: {
-      dificulty: "easy",
+      dificulty: "EASY",
       points: 150,
     },
   },
@@ -307,7 +307,7 @@ const defaultActivities: ChallengeActivity[] = [
       avatar: "https://assets.hackingclub.com/user/avatar/64ff08d126836",
     },
     flag: {
-      dificulty: "easy",
+      dificulty: "EASY",
       points: 150,
     },
   },
@@ -320,7 +320,7 @@ const defaultActivities: ChallengeActivity[] = [
       avatar: "https://assets.hackingclub.com/user/avatar/64ff09143f724",
     },
     flag: {
-      dificulty: "easy",
+      dificulty: "EASY",
       points: 150,
     },
   },
@@ -333,7 +333,7 @@ const defaultActivities: ChallengeActivity[] = [
       avatar: "https://assets.hackingclub.com/user/avatar/64ff03d508677",
     },
     flag: {
-      dificulty: "easy",
+      dificulty: "EASY",
       points: 150,
     },
   },
@@ -346,7 +346,7 @@ const defaultActivities: ChallengeActivity[] = [
       avatar: "https://assets.hackingclub.com/user/avatar/64ff03c8cd855",
     },
     flag: {
-      dificulty: "easy",
+      dificulty: "EASY",
       points: 150,
     },
   },
@@ -359,7 +359,7 @@ const defaultActivities: ChallengeActivity[] = [
       avatar: "https://assets.hackingclub.com/user/avatar/64ff04671f21a",
     },
     flag: {
-      dificulty: "easy",
+      dificulty: "EASY",
       points: 150,
     },
   },
@@ -372,7 +372,7 @@ const defaultActivities: ChallengeActivity[] = [
       avatar: "https://assets.hackingclub.com/user/avatar/64ff050362552",
     },
     flag: {
-      dificulty: "easy",
+      dificulty: "EASY",
       points: 150,
     },
   },
@@ -385,7 +385,7 @@ const defaultActivities: ChallengeActivity[] = [
       avatar: "https://assets.hackingclub.com/user/avatar/64ff03de5940f",
     },
     flag: {
-      dificulty: "easy",
+      dificulty: "EASY",
       points: 150,
     },
   },
@@ -398,7 +398,7 @@ const defaultActivities: ChallengeActivity[] = [
       avatar: "https://assets.hackingclub.com/user/avatar/64ff03e15ccd1",
     },
     flag: {
-      dificulty: "easy",
+      dificulty: "EASY",
       points: 150,
     },
   },
@@ -411,7 +411,7 @@ const defaultActivities: ChallengeActivity[] = [
       avatar: "https://assets.hackingclub.com/user/avatar/64ff03dc533bb",
     },
     flag: {
-      dificulty: "easy",
+      dificulty: "EASY",
       points: 150,
     },
   },
@@ -424,7 +424,7 @@ const defaultActivities: ChallengeActivity[] = [
       avatar: "https://assets.hackingclub.com/user/avatar/64ff03d3d6b43",
     },
     flag: {
-      dificulty: "easy",
+      dificulty: "EASY",
       points: 150,
     },
   },
@@ -437,7 +437,7 @@ const defaultActivities: ChallengeActivity[] = [
       avatar: "https://assets.hackingclub.com/user/avatar/64ff03f019305",
     },
     flag: {
-      dificulty: "easy",
+      dificulty: "EASY",
       points: 150,
     },
   },
@@ -446,7 +446,7 @@ const defaultActivities: ChallengeActivity[] = [
 export const challengesMock: ChallengeListItem[] = [
   {
     id: 1,
-    difficulty: "easy",
+    difficulty: "EASY",
     iconUrl: "https://assets.hackingclub.com/machine/avatar/cerebro.png",
     title: "Sanity Check",
     releaseDate: "2023-08-21T15:00:00.000000Z",
@@ -565,7 +565,7 @@ export const challengesMock: ChallengeListItem[] = [
   },
   {
     id: 2,
-    difficulty: "medium",
+    difficulty: "MEDIUM",
     iconUrl:
       "https://assets.hackingclub.com/user/avatar/86203505764e5e2ed5b65e4.46030630",
     title: "Spring",
@@ -685,7 +685,7 @@ export const challengesMock: ChallengeListItem[] = [
   },
   {
     id: 3,
-    difficulty: "insane",
+    difficulty: "INSANE",
     iconUrl:
       "https://assets.hackingclub.com/user/avatar/135871330064e89d3da8e655.64690455",
     title: "Carrefour",
@@ -804,7 +804,7 @@ export const challengesMock: ChallengeListItem[] = [
   },
   {
     id: 4,
-    difficulty: "hard",
+    difficulty: "HARD",
     iconUrl: "https://assets.hackingclub.com/machine/avatar/Searchengine.png",
     title: "Search Engine",
     releaseDate: "2023-09-14T12:55:00.000000Z",

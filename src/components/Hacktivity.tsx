@@ -15,7 +15,7 @@ export default function Hacktivity() {
 
       <div className="mt-1 ml-4">
         <span className="text-sm font-medium text-white">
-          marcelo_rodrigues_ext pegou a flag easy e ganhou 20xp{" "}
+          marcelo_rodrigues_ext pegou a flag EASY e ganhou 20xp{" "}
         </span>
 
         <div className="flex items-center mt-1">

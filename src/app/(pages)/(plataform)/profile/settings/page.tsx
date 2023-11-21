@@ -7,15 +7,16 @@ import useSWR from "swr";
 import { fetcher } from "@/lib/swr";
 import { useEffect, useState } from "react";
 import api from "@/services/api";
-import { useAuth } from "../../../../../contexts/AuthContext";
-import ImagePlaceholder from "../../../../../icons/ImagePlaceholder";
+import { useAuth } from "@/contexts/AuthContext";
+import ImagePlaceholder from "@/icons/ImagePlaceholder";
+import { User } from "@/typings/user";
 
 export default function ProfileSettings() {
   const {
     data: user,
     isLoading,
     mutate: refetchUser,
-  } = useSWR("/users/profile", fetcher);
+  } = useSWR<User>("/users/profile", fetcher);
   const [avatarPreview, setAvatarPreview] = useState<null | string>(null);
   const [avatarFile, setAvatarFile] = useState<null | File>(null);
   const [name, setName] = useState(user.name);
@@ -37,7 +38,7 @@ export default function ProfileSettings() {
       bodyFormData.append("avatar", avatarFile);
     }
 
-    const response = await api.put("/users/profile/update", bodyFormData, {
+    const response = await api.put("/users/profile", bodyFormData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
 

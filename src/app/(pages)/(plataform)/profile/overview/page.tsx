@@ -2,9 +2,10 @@
 
 import useSWR from "swr";
 import { fetcher } from "@/lib/swr";
+import { User } from "@/typings/user";
 
 export default function ProfileOverview() {
-  const { data: user, isLoading } = useSWR("/users/profile", fetcher);
+  const { data: user, isLoading } = useSWR<User>("/users/profile", fetcher);
 
   if (!user || isLoading) {
     return null;
