@@ -1,17 +1,17 @@
-import { Difficulty } from "@/mocks/challenges";
+import { Difficulty } from "@/typings/challenge";
 
 export const getChallengeDifficultyColor = (difficulty: Difficulty) => {
   switch (difficulty) {
     case "EASY":
       return "#0bb783";
 
-    case "medium":
+    case "MEDIUM":
       return "#8950fc";
 
-    case "hard":
+    case "HARD":
       return "#ffa800";
 
-    case "insane":
+    case "INSANE":
       return "#f64e60";
 
     default:
@@ -24,13 +24,13 @@ export const getChallengeDifficultyBackground = (difficulty: Difficulty) => {
     case "EASY":
       return "#1c3238";
 
-    case "medium":
+    case "MEDIUM":
       return "#2f264f";
 
-    case "hard":
+    case "HARD":
       return "#392f28";
 
-    case "insane":
+    case "INSANE":
       return "#3a2434";
 
     default:
@@ -43,13 +43,13 @@ export const getChallengeDifficultyLabel = (difficulty: Difficulty) => {
     case "EASY":
       return "Fácil";
 
-    case "medium":
+    case "MEDIUM":
       return "Médio";
 
-    case "hard":
+    case "HARD":
       return "Difícil";
 
-    case "insane":
+    case "INSANE":
       return "Insano";
 
     default:

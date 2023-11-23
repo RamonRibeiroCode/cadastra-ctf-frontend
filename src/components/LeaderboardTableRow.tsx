@@ -1,12 +1,20 @@
 import Image from "next/image";
 import Trophy from "@/icons/Trophy";
 import Blood from "@/icons/Blood";
+import { ScoreboardUser } from "@/typings/scoreboard";
+import { getLowerSnakeName } from "@/helpers/format";
 
 interface RankingTableRowProps {
   position: number;
+  maxPoints: number;
+  scoreboardUser: ScoreboardUser;
 }
 
-export default function RankingTableRow({ position }: RankingTableRowProps) {
+export default function RankingTableRow({
+  position,
+  scoreboardUser,
+  maxPoints,
+}: RankingTableRowProps) {
   const onPodiumNumbers = [1, 2, 3];
   const isOnPodium = onPodiumNumbers.includes(position);
 
@@ -37,7 +45,7 @@ export default function RankingTableRow({ position }: RankingTableRowProps) {
       <td className="py-6">
         <Image
           className="rounded-full"
-          src="https://assets.hackingclub.com/user/avatar/64ff03de5940f"
+          src={scoreboardUser.avatarUrl}
           width={45}
           height={45}
           alt="img"
@@ -46,15 +54,11 @@ export default function RankingTableRow({ position }: RankingTableRowProps) {
       <td className="py-6">
         <div className="flex flex-col ml-4">
           <a href="#" className="text-white font-medium text-md">
-            davi_guimaraes_ext
+            {getLowerSnakeName(scoreboardUser.name)}
           </a>
 
-          <span className="text-sm text-neutral-gray-quinary my-1">
-            Level 2
-          </span>
-
           <div className="flex text-sm font-medium text-neutral-gray-quaternary">
-            <span>First Blood</span>
+            <span>{scoreboardUser.firstBloods} First Blood</span>
 
             <Blood />
           </div>
@@ -64,16 +68,18 @@ export default function RankingTableRow({ position }: RankingTableRowProps) {
       <td className="py-6 ">
         <div className="flex flex-col items-end">
           <div className="mb-1">
-            <span className="text-sm text-white font-semibold">150 </span>
+            <span className="text-sm text-white font-semibold">
+              {scoreboardUser.points}{" "}
+            </span>
             <span className="text-sm text-neutral-gray-tertiary font-semibold">
-              XP
+              CP
             </span>
           </div>
 
           <div className="w-[300px] h-1.5 rounded-md bg-[rgba(255,255,255,0.1)]">
             <div
               className="h-full bg-white rounded-md"
-              style={{ width: "15%" }}
+              style={{ width: `${(scoreboardUser.points * 100) / maxPoints}%` }}
             />
           </div>
         </div>

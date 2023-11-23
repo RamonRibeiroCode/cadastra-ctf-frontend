@@ -2,29 +2,29 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { getChallengeDifficultyColor } from "@/helpers/challenge";
-import { Difficulty } from "@/mocks/challenges";
 import UserShield from "@/icons/UserShield";
 import Blood from "@/icons/Blood";
 import DifficultyFlag from "@/components/ui/DifficultyFlag";
 import InfoBlock from "@/components/ui/InfoBlock";
+import { Difficulty } from "@/typings/challenge";
 
 interface ChallengeListItemProps {
   id: number;
   difficulty: Difficulty;
   iconUrl: string;
-  title: string;
-  releaseDate: string;
-  xp: number;
+  name: string;
+  releaseAt: string;
+  cp: number;
   creatorIconUrl: string;
   firstBloodIconUrl: string;
 }
 
 export default function ChallengeListItem({
   id,
-  title,
+  name,
   iconUrl,
   difficulty,
-  xp,
+  cp,
   creatorIconUrl,
   firstBloodIconUrl,
 }: ChallengeListItemProps) {
@@ -39,7 +39,7 @@ export default function ChallengeListItem({
         </div>
 
         <div className="mt-9 mb-2">
-          <span className="font-semibold text-lg text-white">{title}</span>
+          <span className="font-semibold text-lg text-white">{name}</span>
         </div>
 
         <DifficultyFlag difficulty={difficulty} />
@@ -47,6 +47,7 @@ export default function ChallengeListItem({
         <div className="flex justify-center space-x-5 mt-5 mb-3">
           <InfoBlock>
             <p className="text-white font-medium text-center text-sm">
+              {/* TODO: Adicionar data dinâmica */}
               21 August, 2023
             </p>
             <p className="text-neutral-gray-quaternary text-center text-[13px]">
@@ -55,9 +56,9 @@ export default function ChallengeListItem({
           </InfoBlock>
 
           <InfoBlock>
-            <p className="text-white font-medium text-center text-sm">{xp}</p>
+            <p className="text-white font-medium text-center text-sm">{cp}</p>
             <p className="text-neutral-gray-quaternary text-center text-[13px]">
-              XP earned
+              CP earned
             </p>
           </InfoBlock>
         </div>
@@ -86,13 +87,17 @@ export default function ChallengeListItem({
               <Blood />
             </div>
 
-            <Image
-              className="mt-1 rounded-full"
-              src={firstBloodIconUrl}
-              width={35}
-              height={35}
-              alt=""
-            />
+            <div className="w-[35px] h-[35px]">
+              {firstBloodIconUrl && (
+                <Image
+                  className="mt-1 rounded-full"
+                  src={firstBloodIconUrl}
+                  width={35}
+                  height={35}
+                  alt=""
+                />
+              )}
+            </div>
           </div>
         </div>
       </Link>

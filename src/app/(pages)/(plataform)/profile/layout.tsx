@@ -10,12 +10,16 @@ import { fetcher } from "@/lib/swr";
 import ImagePlaceholder from "@/icons/ImagePlaceholder";
 import { User } from "@/typings/user";
 
-const totalPossiblePoints = 1300;
-
 export default function Profile({ children }: { children: React.ReactNode }) {
-  const { data: user, isLoading } = useSWR<User>("/users/profile", fetcher);
+  const { data: user, isLoading: userIsLoading } = useSWR<User>(
+    "/users/profile",
+    fetcher
+  );
+  const { data: config, isLoading: configIsLoading } = useSWR<{
+    maxPoints: number;
+  }>("/users/max-points", fetcher);
 
-  if (!user || isLoading) {
+  if (!user || userIsLoading || configIsLoading) {
     return null;
   }
 
@@ -66,12 +70,12 @@ export default function Profile({ children }: { children: React.ReactNode }) {
               </InfoBlock>
 
               <div className="flex flex-col justify-end">
-                <div className="flex justify-between">
+                <div className="flex justify-between mb-1">
                   <span className="text-sm font-medium text-neutral-gray-quaternary leading-5">
                     Progresso nos desafios
                   </span>
                   <span className="text-sm font-semibold text-white leading-5">
-                    {(user.points * 100) / totalPossiblePoints}%
+                    {(user.points * 100) / config.maxPoints}%
                   </span>
                 </div>
 
@@ -79,7 +83,7 @@ export default function Profile({ children }: { children: React.ReactNode }) {
                   <div
                     className="h-full bg-white rounded-md"
                     style={{
-                      width: `${(user.points * 100) / totalPossiblePoints}%`,
+                      width: `${(user.points * 100) / config.maxPoints}%`,
                     }}
                   />
                 </div>

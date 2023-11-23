@@ -1,8 +1,24 @@
+"use client";
+
+import useSWR from "swr";
 import LeaderboardTableRow from "@/components/LeaderboardTableRow";
+import { fetcher } from "@/lib/swr";
+import { ScoreboardResponse } from "@/typings/scoreboard";
 
 interface LeaderboardTableProps {}
 
 export default function LeaderboardTable({}: LeaderboardTableProps) {
+  const { data, isLoading } = useSWR<ScoreboardResponse>(
+    "/users/scoreboard",
+    fetcher
+  );
+
+  if (isLoading) {
+    return null;
+  }
+
+  const { scoreboard, maxPoints } = data;
+
   return (
     <div className="w-full">
       <table className="w-full">
@@ -13,14 +29,19 @@ export default function LeaderboardTable({}: LeaderboardTableProps) {
             <th className="p-0 w-[200px] font-medium"></th>
             <th className="p-0 w-[200px] font-medium text-end">
               <span className="flex justify-end items-center">
-                Progress to the next level
+                Progresso nos desafios
               </span>
             </th>
           </tr>
         </thead>
         <tbody>
-          {[1, 2, 3, 4].map((item, index) => (
-            <LeaderboardTableRow key={item} position={index + 1} />
+          {scoreboard.map((scoreboardUser, index) => (
+            <LeaderboardTableRow
+              key={scoreboardUser.avatarUrl}
+              maxPoints={maxPoints}
+              position={index + 1}
+              scoreboardUser={scoreboardUser}
+            />
           ))}
         </tbody>
       </table>

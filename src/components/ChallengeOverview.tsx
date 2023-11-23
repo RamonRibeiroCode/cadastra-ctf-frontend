@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Image from "next/image";
 
-import { Difficulty } from "@/mocks/challenges";
 import { getChallengeDifficultyColor } from "@/helpers/challenge";
 import DifficultyFlag from "@/components/ui/DifficultyFlag";
 import InfoBlock from "@/components/ui/InfoBlock";
@@ -14,6 +13,7 @@ import Gem from "@/icons/Gem";
 import PlayFill from "@/icons/PlayFill";
 import Power from "@/icons/Power";
 import Send from "@/icons/Send";
+import { Difficulty } from "@/typings/challenge";
 
 interface ChallengeOverviewProps {
   difficulty: Difficulty;
@@ -139,6 +139,7 @@ export default function ChallengeOverview({
                 </div>
               </span>
 
+              {/* TODO: Adicionar data dinâmica */}
               <p className="mt-2 text-white font-bold">21 August, 2023</p>
             </InfoBlock>
             <InfoBlock extraClasses="mr-4">

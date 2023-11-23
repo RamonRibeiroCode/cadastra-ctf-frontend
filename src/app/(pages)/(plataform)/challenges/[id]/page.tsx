@@ -19,7 +19,7 @@ export default function ChallengeDetail({ params }: ChallengeDetailProps) {
   );
 
   if (!challenge) {
-    return <h1>Not found</h1>;
+    return <h1 className="text-white my-4">Not found</h1>;
   }
 
   const {
@@ -58,8 +58,7 @@ export default function ChallengeDetail({ params }: ChallengeDetailProps) {
             </span>
 
             <span className="text-sm text-white">
-              <strong className="font-medium">Flags: </strong>
-              1/1
+              <strong className="font-medium">Flags:</strong> 1/1
             </span>
           </div>
 

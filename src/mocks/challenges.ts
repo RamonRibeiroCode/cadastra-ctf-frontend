@@ -1,3 +1,5 @@
+import { Difficulty } from "@/typings/challenge";
+
 interface ChallengeListItem {
   id: number;
   difficulty: Difficulty;
@@ -11,8 +13,6 @@ interface ChallengeListItem {
   scoreboard: ChallengeScoreboard[];
   activities: ChallengeActivity[];
 }
-
-export type Difficulty = "EASY" | "MEDIUM" | "HARD" | "INSANE";
 
 interface ChallengeFirstBlood {
   name: string;

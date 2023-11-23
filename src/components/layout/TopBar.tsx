@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useAuth } from "@/contexts/AuthContext";
 import ImagePlaceholder from "@/icons/ImagePlaceholder";
+import { getLowerSnakeName } from "@/helpers/format";
 
 export default function TopBar() {
   const { handleLogout, user } = useAuth();
@@ -45,10 +46,12 @@ export default function TopBar() {
               {avatarOrPlaceHolder}
 
               <div className="ml-4 flex flex-col">
-                <span className="font-medium text-white">RAMON RAMOS EXT</span>
+                <span className="font-medium text-white uppercase">
+                  {user.name}
+                </span>
 
                 <span className="text-xs font-medium text-neutral-gray-tertiary">
-                  @ramon_ramos_ext
+                  @{getLowerSnakeName(user.name)}
                 </span>
               </div>
             </div>

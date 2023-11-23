@@ -4,42 +4,46 @@ import HeartOutline from "@/icons/HeartOutline";
 import RocketTakeoff from "@/icons/RocketTakeoff";
 import HandThumbsUp from "@/icons/HandThumbsUp";
 import WrenchAdjustable from "@/icons/WrenchAdjustable";
+import { Activity } from "@/typings/activity";
+import { getLowerSnakeName } from "@/helpers/format";
 
-export default function FeedPost() {
+export default function FeedPost({ user, flag }: Activity) {
   return (
     <li className="w-full mb-10 bg-primary-default p-7 rounded-lg">
       <div className="flex items-center">
         <Image
           className="rounded-md"
-          src="https://assets.hackingclub.com/user/avatar/64ff03daeabbe"
+          src={user.avatarUrl}
           alt=""
           width={50}
           height={50}
         />
         <div className="flex-1 ml-4">
           <div className="flex items-center">
-            <span className="text-neutral-gray-secondary font-medium">
-              ADILSON BASSANI
+            <span className="text-neutral-gray-secondary font-medium uppercase">
+              {user.name}
             </span>
             <small className="text-neutral-gray-tertiary text-xs ml-1">
-              @adilson_bassani
+              @{getLowerSnakeName(user.name)}
             </small>
           </div>
 
           <span className="block text-neutral-gray-quaternary text-xs my-1">
-            XP: 70 | Level: 2
+            CP: {user.points}
           </span>
           <span className="block text-neutral-gray-quaternary text-xs">
+            {/* TODO: Adicionar data dinâmica */}
             16 days ago
           </span>
         </div>
       </div>
 
-      <div className="text-neutral-gray-secondary text-sm mt-5 mb-7">
-        O usuário adilson_bassani ownow a desafio Carrefour
+      <div className="text-neutral-gray-secondary text-sm mt-5">
+        O usuário {getLowerSnakeName(user.name)} resgatou uma flag{" "}
+        {flag.difficulty} no desafio {flag.challenge.name}
       </div>
 
-      <ul className="flex py-2 border-t border-b border-[#2b2b40]">
+      {/* <ul className="flex py-2 border-t border-b border-[#2b2b40]">
         <li className="mr-1">
           <button className="flex justify-center items-center w-16 h-8 rounded-md transition-all text-[13px] text-white hover:text-[#f64e60] hover:bg-[#3a2434]">
             <HeartOutline fill="#f64e60" />
@@ -68,7 +72,7 @@ export default function FeedPost() {
             <span className="ml-2">0</span>
           </button>
         </li>
-      </ul>
+      </ul> */}
     </li>
   );
 }

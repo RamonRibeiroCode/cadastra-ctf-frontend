@@ -1,22 +1,39 @@
+"use client";
+
+import useSWR from "swr";
+
 import ChallengeListItem from "@/components/ChallengeListItem";
-import { challengesMock } from "@/mocks/challenges";
+import { fetcher } from "@/lib/swr";
+import { ChallengeListItem as IChallengeListItem } from "@/typings/challenge";
 
 export default function Challenges() {
+  const { data: challenges, isLoading } = useSWR<IChallengeListItem[]>(
+    "/challenges",
+    fetcher
+  );
+
+  if (!challenges || isLoading) {
+    return null;
+  }
+
   return (
     <div className="my-10">
       <div className="max-w-7xl mx-auto">
         <ul className="grid grid-cols-3 gap-7">
-          {challengesMock.map((challenge) => (
+          {challenges.map((challenge) => (
             <ChallengeListItem
-              key={challenge.releaseDate}
+              key={challenge.releaseAt}
               id={challenge.id}
-              creatorIconUrl={challenge.creatorIconUrl}
+              name={challenge.name}
+              creatorIconUrl="https://app.safecodeweek.com.br/media/logos/crowsec-edtech.jpg"
               difficulty={challenge.difficulty}
-              iconUrl={challenge.iconUrl}
-              releaseDate={challenge.releaseDate}
-              title={challenge.title}
-              xp={challenge.xp}
-              firstBloodIconUrl={challenge.firstBlood.iconUrl}
+              iconUrl={challenge.imageUrl}
+              releaseAt={challenge.releaseAt}
+              firstBloodIconUrl={challenge.firstBlood?.avatarUrl}
+              cp={challenge.flags.reduce(
+                (prevCp, currentFlag) => prevCp + currentFlag.points,
+                0
+              )}
             />
           ))}
         </ul>
