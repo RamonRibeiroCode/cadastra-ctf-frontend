@@ -1,9 +1,12 @@
 import InfoCircleFill from "@/icons/InfoCircleFill";
 import RankingTableRow from "@/components/RankingTableRow";
+import { ScoreboardDetail } from "@/typings/challenge";
 
-interface RankingTableProps {}
+interface RankingTableProps {
+  scoreboard: ScoreboardDetail[];
+}
 
-export default function RankingTable({}: RankingTableProps) {
+export default function RankingTable({ scoreboard }: RankingTableProps) {
   return (
     <div className="table-responsive mt-10">
       <table className="table table-row-dashed table-row-gray-200 align-middle gs-0 gy-4">
@@ -21,8 +24,15 @@ export default function RankingTable({}: RankingTableProps) {
           </tr>
         </thead>
         <tbody>
-          {[1, 2, 3, 4].map((item, index) => (
-            <RankingTableRow key={item} position={index + 1} />
+          {scoreboard.map((item, index) => (
+            <RankingTableRow
+              key={item.user.avatarUrl}
+              position={index + 1}
+              userAvatarUrl={item.user.avatarUrl}
+              userName={item.user.name}
+              wasFirstBlood={index === 0}
+              executionTime={item.executionTime}
+            />
           ))}
         </tbody>
       </table>

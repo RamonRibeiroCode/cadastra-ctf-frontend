@@ -1,9 +1,15 @@
-import { challengesMock } from "@/mocks/challenges";
+"use client";
+
+import useSWR from "swr";
+
 import Trophy from "@/icons/Trophy";
 import ListNested from "@/icons/ListNested";
 import RankingTable from "@/components/RankingTable";
 import ChallengeOverview from "@/components/ChallengeOverview";
 import Hacktivity from "@/components/Hacktivity";
+import { fetcher } from "@/lib/swr";
+import { ActivityDetail, ChallengeDetail } from "@/typings/challenge";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface ChallengeDetailProps {
   params: {
@@ -11,41 +17,78 @@ interface ChallengeDetailProps {
   };
 }
 
-export default function ChallengeDetail({ params }: ChallengeDetailProps) {
+export default function ChallengeDetail({
+  params,
+}: Readonly<ChallengeDetailProps>) {
   const { id } = params;
+  const { user } = useAuth();
 
-  const challenge = challengesMock.find(
-    (challenge) => challenge.id.toString() === id
+  const { data: challenge, isLoading } = useSWR<ChallengeDetail>(
+    `/challenges/${id}`,
+    fetcher
   );
+
+  if (isLoading) {
+    return null;
+  }
 
   if (!challenge) {
     return <h1 className="text-white my-4">Not found</h1>;
   }
 
   const {
-    difficulty,
-    iconUrl,
-    title,
+    name,
     description,
+    difficulty,
+    imageUrl,
+    releaseAt,
     firstBlood,
-    xp,
-    creatorIconUrl,
-    releaseDate,
+    flags,
+    url,
+    scoreboard,
   } = challenge;
+
+  const allFlagsPoints = flags.reduce((accumulator, flag) => {
+    return accumulator + flag.points;
+  }, 0);
+
+  const howManyFlagsWereRedeemed = flags.reduce((accumulator, flag) => {
+    const flagWasRedeemed = flag.activities.some(
+      (activity) => activity.user.id === user.id
+    );
+
+    if (flagWasRedeemed) {
+      return accumulator + 1;
+    }
+
+    return accumulator;
+  }, 0);
+
+  const flagsActivities: ActivityDetail[] = [];
+
+  flags.forEach((flag) => flagsActivities.push(...flag.activities));
+
+  flagsActivities.sort((activityA, activityB) => {
+    const activityADate = new Date(activityA.createdAt);
+    const activityBDate = new Date(activityB.createdAt);
+
+    return Number(activityBDate) - Number(activityADate);
+  });
 
   return (
     <div className="my-10">
       <div className="max-w-7xl mx-auto">
         <ChallengeOverview
-          creatorIconUrl={creatorIconUrl}
+          creatorIconUrl="https://app.safecodeweek.com.br/media/logos/crowsec-edtech.jpg"
           description={description}
           difficulty={difficulty}
-          iconUrl={iconUrl}
-          xp={xp}
-          title={title}
-          releaseDate={releaseDate}
-          firstBloodIconUrl={firstBlood.iconUrl}
+          imageUrl={imageUrl}
+          cp={allFlagsPoints}
+          name={name}
+          releaseAt={releaseAt}
+          firstBloodAvatarUrl={firstBlood.avatarUrl}
           firstBloodName={firstBlood.name}
+          url={url}
         />
 
         <div className="bg-primary-default rounded-lg p-7 my-7">
@@ -54,15 +97,25 @@ export default function ChallengeDetail({ params }: ChallengeDetailProps) {
               <strong className="font-medium">
                 Seu progresso neste desafio é de:{" "}
               </strong>
-              100%
+              {(howManyFlagsWereRedeemed * 100) / challenge.flags.length}%
             </span>
 
             <span className="text-sm text-white">
-              <strong className="font-medium">Flags:</strong> 1/1
+              <strong className="font-medium">Flags:</strong>{" "}
+              {howManyFlagsWereRedeemed}/{challenge.flags.length}
             </span>
           </div>
 
-          <div className="w-full h-3 bg-white rounded-md" />
+          <div className="w-full h-3 rounded-md bg-[rgba(255,255,255,0.1)] mb-1">
+            <div
+              className="h-full bg-white rounded-md"
+              style={{
+                width: `${
+                  (howManyFlagsWereRedeemed * 100) / challenge.flags.length
+                }%`,
+              }}
+            />
+          </div>
         </div>
 
         <div className="bg-primary-default rounded-lg p-7">
@@ -78,7 +131,7 @@ export default function ChallengeDetail({ params }: ChallengeDetailProps) {
                 </span>
               </div>
 
-              <RankingTable />
+              <RankingTable scoreboard={scoreboard} />
             </div>
             <div className="flex-1">
               <div className="flex items-center text-xs font-medium text-white mb-10">
@@ -91,8 +144,13 @@ export default function ChallengeDetail({ params }: ChallengeDetailProps) {
                 </span>
               </div>
 
-              {[1, 2, 3, 4].map((item) => (
-                <Hacktivity key={item} />
+              {flagsActivities.map((activity) => (
+                <Hacktivity
+                  key={activity.createdAt}
+                  userName={activity.user.name}
+                  flagDifficulty={activity.flag.difficulty}
+                  flagPoints={activity.flag.points}
+                />
               ))}
             </div>
           </div>
@@ -101,9 +159,3 @@ export default function ChallengeDetail({ params }: ChallengeDetailProps) {
     </div>
   );
 }
-
-// export async function generateStaticParams() {
-//   return challengesMock.map((challenge) => ({
-//     id: challenge.id.toString(),
-//   }));
-// }

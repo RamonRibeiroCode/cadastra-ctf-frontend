@@ -3,13 +3,15 @@ import {
   getChallengeDifficultyColor,
   getChallengeDifficultyLabel,
 } from "@/helpers/challenge";
-import { Difficulty } from "@/mocks/challenges";
+import { Difficulty } from "@/typings/challenge";
 
 interface DifficultyFlagProps {
   difficulty: Difficulty;
 }
 
-export default function DifficultyFlag({ difficulty }: DifficultyFlagProps) {
+export default function DifficultyFlag({
+  difficulty,
+}: Readonly<DifficultyFlagProps>) {
   return (
     <div
       className="flex w-fit px-1.5 py-0.5 rounded text-[11px] font-semibold"

@@ -18,25 +18,28 @@ import { Difficulty } from "@/typings/challenge";
 interface ChallengeOverviewProps {
   difficulty: Difficulty;
   description: string;
-  iconUrl: string;
-  title: string;
-  releaseDate: string;
-  xp: number;
+  imageUrl: string;
+  name: string;
+  releaseAt: string;
+  cp: number;
   creatorIconUrl: string;
   firstBloodName: string;
-  firstBloodIconUrl: string;
+  firstBloodAvatarUrl: string;
+  url?: string;
 }
 
 export default function ChallengeOverview({
-  title,
-  iconUrl,
+  name,
+  imageUrl,
   description,
   difficulty,
-  xp,
+  cp,
   creatorIconUrl,
   firstBloodName,
-  firstBloodIconUrl,
-}: ChallengeOverviewProps) {
+  firstBloodAvatarUrl,
+  releaseAt,
+  url,
+}: Readonly<ChallengeOverviewProps>) {
   const [isChallengeStarted, setIsChallengeStarted] = useState(false);
 
   return (
@@ -62,11 +65,11 @@ export default function ChallengeOverview({
             </span>
 
             <a
-              href="https://app.safecodeweek.com.br/club/feed"
+              href={url}
               className="block text-xs font-medium text-center text-[#3699ff] hover:text-[#0073e9]"
               target="_blank"
             >
-              https://app.safecodeweek.com.br/club/feed
+              {url}
             </a>
           </div>
 
@@ -97,7 +100,7 @@ export default function ChallengeOverview({
         >
           <Image
             className="floating"
-            src={iconUrl}
+            src={imageUrl}
             width={75}
             height={75}
             alt=""
@@ -109,7 +112,7 @@ export default function ChallengeOverview({
             <div>
               <div className="flex items-center">
                 <h1 className="text-xl font-semibold text-neutral-gray-secondary mr-2">
-                  {title}
+                  {name}
                 </h1>
 
                 <DifficultyFlag difficulty={difficulty} />
@@ -172,7 +175,7 @@ export default function ChallengeOverview({
               <p className="flex items-center mt-2 text-white font-bold">
                 <Image
                   className="mr-1 rounded-full"
-                  src={firstBloodIconUrl}
+                  src={firstBloodAvatarUrl}
                   width={25}
                   height={25}
                   alt=""
@@ -182,16 +185,16 @@ export default function ChallengeOverview({
             </InfoBlock>
             <InfoBlock extraClasses="mr-4">
               <span className="flex items-center text-sm text-neutral-gray-quaternary">
-                Total de XP
+                Total de CP
                 <div className="ml-1 text-[#ffa800]">
                   <Gem />
                 </div>
               </span>
 
               <p className="mt-2 text-white font-bold">
-                {xp}
+                {cp}
                 <span className="text-xs text-neutral-gray-quaternary ml-1">
-                  xp
+                  cp
                 </span>
               </p>
             </InfoBlock>
