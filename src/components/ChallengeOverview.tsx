@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 
 import { getChallengeDifficultyColor } from "@/helpers/challenge";
@@ -11,9 +10,10 @@ import ClockHistory from "@/icons/ClockHistory";
 import Stars from "@/icons/Stars";
 import Gem from "@/icons/Gem";
 import PlayFill from "@/icons/PlayFill";
-import Power from "@/icons/Power";
 import Send from "@/icons/Send";
 import { Difficulty } from "@/typings/challenge";
+import { useCountDown } from "@/hooks/useCountDown";
+import { padHour } from "@/helpers/format";
 
 interface ChallengeOverviewProps {
   difficulty: Difficulty;
@@ -26,6 +26,8 @@ interface ChallengeOverviewProps {
   firstBloodName: string;
   firstBloodAvatarUrl: string;
   url?: string;
+  wasCompletedByUser: boolean;
+  refetch: () => void;
 }
 
 export default function ChallengeOverview({
@@ -39,25 +41,24 @@ export default function ChallengeOverview({
   firstBloodAvatarUrl,
   releaseAt,
   url,
+  wasCompletedByUser,
+  refetch,
 }: Readonly<ChallengeOverviewProps>) {
-  const [isChallengeStarted, setIsChallengeStarted] = useState(false);
+  const { remainingSeconds } = useCountDown(releaseAt);
+
+  const countDownWasFinished = remainingSeconds === 0;
+
+  const formattedRemainingMinutes = padHour(
+    parseInt((remainingSeconds / 60).toString())
+  );
+
+  const formattedRemainingSeconds = padHour(remainingSeconds % 60);
 
   return (
     <div className="bg-primary-default rounded-lg">
-      {isChallengeStarted && (
+      {url && !wasCompletedByUser && (
         <div className="flex border-b border-[#2b2b40] p-7">
-          <button
-            className="w-1/4 p-4 transition-all rounded-lg hover:shadow-[0_8px_17px_0_rgba(0,0,0,0.2),_0_6px_20px_0_rgba(0,0,0,0.19)]"
-            onClick={() => setIsChallengeStarted(false)}
-          >
-            <span className="block text-center text-neutral-gray-secondary font-medium">
-              Desligar instância
-            </span>
-
-            <div className="flex justify-center mt-2 text-[#f64e60]">
-              <Power />
-            </div>
-          </button>
+          <div className="w-1/4"></div>
 
           <div className="w-1/2 p-4">
             <span className="block text-neutral-gray-secondary font-medium text-center mb-1">
@@ -123,10 +124,17 @@ export default function ChallengeOverview({
               </p>
             </div>
 
-            {!isChallengeStarted && (
+            {!wasCompletedByUser && !url && !countDownWasFinished && (
+              <div className="flex text-white">
+                <span>{formattedRemainingMinutes}</span>
+                <span>:{formattedRemainingSeconds}</span>
+              </div>
+            )}
+
+            {!wasCompletedByUser && !url && countDownWasFinished && (
               <button
                 className="flex justify-center items-center w-14 h-11 rounded-md transition-all bg-[#1c3238] hover:bg-[#0bb783] text-[#0bb783] hover:text-white"
-                onClick={() => setIsChallengeStarted(true)}
+                onClick={() => refetch()}
               >
                 <PlayFill />
               </button>
@@ -173,13 +181,16 @@ export default function ChallengeOverview({
               </span>
 
               <p className="flex items-center mt-2 text-white font-bold">
-                <Image
-                  className="mr-1 rounded-full"
-                  src={firstBloodAvatarUrl}
-                  width={25}
-                  height={25}
-                  alt=""
-                />
+                {firstBloodAvatarUrl && (
+                  <Image
+                    className="mr-1 rounded-full"
+                    src={firstBloodAvatarUrl}
+                    width={25}
+                    height={25}
+                    alt=""
+                  />
+                )}
+
                 {firstBloodName}
               </p>
             </InfoBlock>

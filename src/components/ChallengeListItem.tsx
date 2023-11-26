@@ -17,6 +17,7 @@ interface ChallengeListItemProps {
   cp: number;
   creatorIconUrl: string;
   firstBloodIconUrl: string;
+  wasCompletedByUser: boolean;
 }
 
 export default function ChallengeListItem({
@@ -27,15 +28,24 @@ export default function ChallengeListItem({
   cp,
   creatorIconUrl,
   firstBloodIconUrl,
-}: ChallengeListItemProps) {
+  wasCompletedByUser,
+}: Readonly<ChallengeListItemProps>) {
   return (
     <li className="flex bg-primary-default rounded-lg">
       <Link href={`/challenges/${id}`} className="p-7 flex-1">
-        <div
-          className="bg-neutral-gray-senary w-[50px] h-[50px] rounded-md border"
-          style={{ borderColor: getChallengeDifficultyColor(difficulty) }}
-        >
-          <Image src={iconUrl} alt="" width={50} height={50} />
+        <div className="flex justify-between items-start">
+          <div
+            className="bg-neutral-gray-senary w-[50px] h-[50px] rounded-md border"
+            style={{ borderColor: getChallengeDifficultyColor(difficulty) }}
+          >
+            <Image src={iconUrl} alt="" width={50} height={50} />
+          </div>
+
+          {wasCompletedByUser && (
+            <div className="bg-[#1c3238] text-[#0bb783] text-xs px-3 py-2 rounded-lg">
+              Completado
+            </div>
+          )}
         </div>
 
         <div className="mt-9 mb-2">

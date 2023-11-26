@@ -23,10 +23,13 @@ export default function ChallengeDetail({
   const { id } = params;
   const { user } = useAuth();
 
-  const { data: challenge, isLoading } = useSWR<ChallengeDetail>(
-    `/challenges/${id}`,
-    fetcher
-  );
+  const {
+    data: challenge,
+    isLoading,
+    mutate,
+  } = useSWR<ChallengeDetail>(`/challenges/${id}`, fetcher, {
+    revalidateOnFocus: false,
+  });
 
   if (isLoading) {
     return null;
@@ -46,6 +49,7 @@ export default function ChallengeDetail({
     flags,
     url,
     scoreboard,
+    wasCompletedByUser,
   } = challenge;
 
   const allFlagsPoints = flags.reduce((accumulator, flag) => {
@@ -86,9 +90,11 @@ export default function ChallengeDetail({
           cp={allFlagsPoints}
           name={name}
           releaseAt={releaseAt}
-          firstBloodAvatarUrl={firstBlood.avatarUrl}
-          firstBloodName={firstBlood.name}
+          firstBloodAvatarUrl={firstBlood?.avatarUrl}
+          firstBloodName={firstBlood?.name}
           url={url}
+          wasCompletedByUser={wasCompletedByUser}
+          refetch={mutate}
         />
 
         <div className="bg-primary-default rounded-lg p-7 my-7">

@@ -11,6 +11,7 @@ export interface ChallengeListItem {
   imageUrl: string;
   firstBlood?: FirstBloodList;
   flags: FlagList[];
+  wasCompletedByUser: boolean;
 }
 
 interface FlagList {
@@ -34,6 +35,7 @@ export interface ChallengeDetail {
   firstBlood?: FirstBloodDetail;
   flags: FlagDetail[];
   scoreboard: ScoreboardDetail[];
+  wasCompletedByUser: boolean;
 }
 
 interface FirstBloodDetail {

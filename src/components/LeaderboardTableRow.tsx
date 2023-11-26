@@ -57,7 +57,7 @@ export default function RankingTableRow({
             {getLowerSnakeName(scoreboardUser.name)}
           </a>
 
-          <div className="flex text-sm font-medium text-neutral-gray-quaternary">
+          <div className="flex items-center text-sm font-medium text-neutral-gray-quaternary">
             <span>{scoreboardUser.firstBloods} First Blood</span>
 
             <Blood />

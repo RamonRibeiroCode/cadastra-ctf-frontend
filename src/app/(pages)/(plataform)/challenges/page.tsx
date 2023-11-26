@@ -34,6 +34,7 @@ export default function Challenges() {
                 (prevCp, currentFlag) => prevCp + currentFlag.points,
                 0
               )}
+              wasCompletedByUser={challenge.wasCompletedByUser}
             />
           ))}
         </ul>
