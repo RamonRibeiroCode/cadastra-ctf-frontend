@@ -83,6 +83,7 @@ export default function ChallengeDetail({
     <div className="my-10">
       <div className="max-w-7xl mx-auto">
         <ChallengeOverview
+          id={id}
           creatorIconUrl="https://app.safecodeweek.com.br/media/logos/crowsec-edtech.jpg"
           description={description}
           difficulty={difficulty}

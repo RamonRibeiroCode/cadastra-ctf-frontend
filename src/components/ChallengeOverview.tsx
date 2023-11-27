@@ -13,9 +13,17 @@ import PlayFill from "@/icons/PlayFill";
 import Send from "@/icons/Send";
 import { Difficulty } from "@/typings/challenge";
 import { useCountDown } from "@/hooks/useCountDown";
-import { padHour } from "@/helpers/format";
+import {
+  getMinutesBySeconds,
+  getRemaningSeconds,
+  padHour,
+} from "@/helpers/format";
+import { useState } from "react";
+import api from "@/services/api";
+import { handleError } from "@/helpers/error";
 
 interface ChallengeOverviewProps {
+  id: string;
   difficulty: Difficulty;
   description: string;
   imageUrl: string;
@@ -31,6 +39,7 @@ interface ChallengeOverviewProps {
 }
 
 export default function ChallengeOverview({
+  id,
   name,
   imageUrl,
   description,
@@ -44,15 +53,50 @@ export default function ChallengeOverview({
   wasCompletedByUser,
   refetch,
 }: Readonly<ChallengeOverviewProps>) {
+  const [flagName, setFlagName] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { remainingSeconds } = useCountDown(releaseAt);
 
   const countDownWasFinished = remainingSeconds === 0;
 
   const formattedRemainingMinutes = padHour(
-    parseInt((remainingSeconds / 60).toString())
+    getMinutesBySeconds(remainingSeconds)
+  );
+  const formattedRemainingSeconds = padHour(
+    getRemaningSeconds(remainingSeconds)
   );
 
-  const formattedRemainingSeconds = padHour(remainingSeconds % 60);
+  const submitFlag = async () => {
+    setLoading(true);
+
+    try {
+      await api.post(`/challenges/${id}/submit-flag`, { flagName });
+
+      setSuccess(true);
+      setFlagName("");
+      refetch();
+    } catch (error) {
+      const { message } = handleError(error);
+
+      setErrorMessage(message);
+    }
+
+    setLoading(false);
+  };
+
+  const handleChangeFlag = (value: string) => {
+    setFlagName(value);
+
+    if (errorMessage) {
+      setErrorMessage("");
+    }
+
+    if (success) {
+      setSuccess(false);
+    }
+  };
 
   return (
     <div className="bg-primary-default rounded-lg">
@@ -81,15 +125,32 @@ export default function ChallengeOverview({
 
             <div className="flex">
               <input
+                value={flagName}
+                onChange={(e) => handleChangeFlag(e.target.value)}
                 type="text"
                 placeholder="hackingclub{FLAG}"
-                className="bg-transparent flex-1 h-10 py-2.5 px-3 border border-neutral-gray-senary rounded-md outline-none mr-2 text-[#92929f] text-sm placeholder:text-neutral-gray-tertiary focus:border-neutral-gray-quaternary"
+                className="bg-transparent flex-1 h-10 py-2.5 px-3 border border-neutral-gray-senary rounded-md outline-0 mr-2 text-[#92929f] text-sm placeholder:text-neutral-gray-tertiary focus:border-neutral-gray-quaternary"
               />
 
-              <button className="flex items-center h-10 px-2">
-                <Send />
+              <button
+                disabled={loading}
+                className={`flex items-center h-10 px-2 ${
+                  loading ? "cursor-not-allowed" : "cursor-pointer"
+                }`}
+                onClick={submitFlag}
+              >
+                <Send fill={loading ? "#cccccc" : "#4caf50"} />
               </button>
             </div>
+
+            {success && (
+              <span className="text-xs text-[#4caf50]">
+                Flag resgatada com sucesso
+              </span>
+            )}
+            {errorMessage && (
+              <span className="text-xs text-red-500">{errorMessage}</span>
+            )}
           </div>
         </div>
       )}
@@ -109,7 +170,7 @@ export default function ChallengeOverview({
         </div>
 
         <div className="ml-5 flex-1">
-          <div className="flex justify-between">
+          <div className="flex justify-between items-start">
             <div>
               <div className="flex items-center">
                 <h1 className="text-xl font-semibold text-neutral-gray-secondary mr-2">
@@ -138,6 +199,12 @@ export default function ChallengeOverview({
               >
                 <PlayFill />
               </button>
+            )}
+
+            {wasCompletedByUser && (
+              <div className="bg-[#1c3238] text-[#0bb783] text-xs px-3 py-2 rounded-lg">
+                Completado
+              </div>
             )}
           </div>
 

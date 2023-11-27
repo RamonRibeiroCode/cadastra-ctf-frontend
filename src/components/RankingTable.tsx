@@ -6,7 +6,9 @@ interface RankingTableProps {
   scoreboard: ScoreboardDetail[];
 }
 
-export default function RankingTable({ scoreboard }: RankingTableProps) {
+export default function RankingTable({
+  scoreboard,
+}: Readonly<RankingTableProps>) {
   return (
     <div className="table-responsive mt-10">
       <table className="table table-row-dashed table-row-gray-200 align-middle gs-0 gy-4">

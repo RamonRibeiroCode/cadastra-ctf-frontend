@@ -1,7 +1,11 @@
 import Image from "next/image";
 import Trophy from "@/icons/Trophy";
 import Blood from "@/icons/Blood";
-import { getLowerSnakeName } from "@/helpers/format";
+import {
+  getMinutesBySeconds,
+  getRemaningSeconds,
+  getLowerSnakeName,
+} from "@/helpers/format";
 
 interface RankingTableRowProps {
   position: number;
@@ -18,9 +22,6 @@ export default function RankingTableRow({
   wasFirstBlood,
   executionTime,
 }: Readonly<RankingTableRowProps>) {
-  const onPodiumNumbers = [1, 2, 3];
-  const isOnPodium = onPodiumNumbers.includes(position);
-
   const getFillTrophy = () => {
     switch (position) {
       case 1:
@@ -36,6 +37,12 @@ export default function RankingTableRow({
         return "#ffd900";
     }
   };
+
+  const remainingMinutes = getMinutesBySeconds(executionTime);
+  const remainingSeconds = getRemaningSeconds(executionTime);
+
+  const onPodiumNumbers = [1, 2, 3];
+  const isOnPodium = onPodiumNumbers.includes(position);
 
   return (
     <tr className="border-b border-[#2b2b40] border-dashed">
@@ -72,7 +79,8 @@ export default function RankingTableRow({
 
       <td className="py-4 text-end">
         <span className="px-1.5 py-0.5 rounded text-[11px] font-semibold bg-[#1c3238] text-[#0bb783]">
-          {executionTime} s
+          {remainingMinutes !== 0 && `${remainingMinutes}m `}
+          {remainingSeconds !== 0 && `${remainingSeconds}s`}
         </span>
       </td>
     </tr>
