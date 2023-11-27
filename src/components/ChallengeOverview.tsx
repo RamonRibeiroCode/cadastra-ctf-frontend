@@ -14,6 +14,7 @@ import Send from "@/icons/Send";
 import { Difficulty } from "@/typings/challenge";
 import { useCountDown } from "@/hooks/useCountDown";
 import {
+  formatDateAndYear,
   getMinutesBySeconds,
   getRemaningSeconds,
   padHour,
@@ -217,8 +218,9 @@ export default function ChallengeOverview({
                 </div>
               </span>
 
-              {/* TODO: Adicionar data dinâmica */}
-              <p className="mt-2 text-white font-bold">21 August, 2023</p>
+              <p className="mt-2 text-white font-bold">
+                {formatDateAndYear(releaseAt)}
+              </p>
             </InfoBlock>
             <InfoBlock extraClasses="mr-4">
               <span className="flex items-center text-sm text-neutral-gray-quaternary">

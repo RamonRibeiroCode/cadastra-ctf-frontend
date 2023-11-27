@@ -1,19 +1,25 @@
 import Image from "next/image";
 
 import Flag from "@/icons/Flag";
-import { getLowerSnakeName } from "@/helpers/format";
+import {
+  formatHourDate,
+  formatShortDate,
+  getLowerSnakeName,
+} from "@/helpers/format";
 import { Difficulty } from "@/typings/challenge";
 
 interface HacktivityProps {
   userName: string;
   flagDifficulty: Difficulty;
   flagPoints: number;
+  createdAt: string;
 }
 
 export default function Hacktivity({
   userName,
   flagDifficulty,
   flagPoints,
+  createdAt,
 }: Readonly<HacktivityProps>) {
   return (
     <div className="flex mb-10">
@@ -33,8 +39,7 @@ export default function Hacktivity({
 
         <div className="flex items-center mt-1">
           <div className="mr-1 text-xs text-neutral-gray-tertiary">
-            {/* TODO: Adicionar data dinâmica */}
-            Owned at 15/09/2023 20:20:29 by
+            Owned at {formatShortDate(createdAt)} {formatHourDate(createdAt)} by
           </div>
 
           <Image

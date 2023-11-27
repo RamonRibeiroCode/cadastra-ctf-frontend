@@ -154,6 +154,7 @@ export default function ChallengeDetail({
               {flagsActivities.map((activity) => (
                 <Hacktivity
                   key={activity.createdAt}
+                  createdAt={activity.createdAt}
                   userName={activity.user.name}
                   flagDifficulty={activity.flag.difficulty}
                   flagPoints={activity.flag.points}

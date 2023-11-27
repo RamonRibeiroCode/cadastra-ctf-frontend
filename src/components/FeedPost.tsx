@@ -5,9 +5,11 @@ import RocketTakeoff from "@/icons/RocketTakeoff";
 import HandThumbsUp from "@/icons/HandThumbsUp";
 import WrenchAdjustable from "@/icons/WrenchAdjustable";
 import { Activity } from "@/typings/activity";
-import { getLowerSnakeName } from "@/helpers/format";
+import { getFormattedTimeAgo, getLowerSnakeName } from "@/helpers/format";
 
-export default function FeedPost({ user, flag }: Activity) {
+export default function FeedPost({ user, flag, createdAt }: Activity) {
+  const { label, time } = getFormattedTimeAgo(createdAt);
+
   return (
     <li className="w-full mb-10 bg-primary-default p-7 rounded-lg">
       <div className="flex items-center">
@@ -32,8 +34,7 @@ export default function FeedPost({ user, flag }: Activity) {
             CP: {user.points}
           </span>
           <span className="block text-neutral-gray-quaternary text-xs">
-            {/* TODO: Adicionar data dinâmica */}
-            16 days ago
+            {time} {label} ago
           </span>
         </div>
       </div>

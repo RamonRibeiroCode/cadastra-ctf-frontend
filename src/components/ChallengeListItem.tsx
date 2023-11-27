@@ -7,6 +7,7 @@ import Blood from "@/icons/Blood";
 import DifficultyFlag from "@/components/ui/DifficultyFlag";
 import InfoBlock from "@/components/ui/InfoBlock";
 import { Difficulty } from "@/typings/challenge";
+import { formatDateAndYear } from "@/helpers/format";
 
 interface ChallengeListItemProps {
   id: number;
@@ -23,6 +24,7 @@ interface ChallengeListItemProps {
 export default function ChallengeListItem({
   id,
   name,
+  releaseAt,
   iconUrl,
   difficulty,
   cp,
@@ -57,8 +59,7 @@ export default function ChallengeListItem({
         <div className="flex justify-center space-x-5 mt-5 mb-3">
           <InfoBlock>
             <p className="text-white font-medium text-center text-sm">
-              {/* TODO: Adicionar data dinâmica */}
-              21 August, 2023
+              {formatDateAndYear(releaseAt)}
             </p>
             <p className="text-neutral-gray-quaternary text-center text-[13px]">
               Release Date
