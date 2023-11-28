@@ -5,7 +5,7 @@ export const getAPIClient = (ctx?: any) => {
   const { "m3ctf.token": token } = parseCookies(ctx);
 
   const api = axios.create({
-    baseURL: "http://localhost:3333/api",
+    baseURL: process.env["NEXT_PUBLIC_API_URL"],
   });
 
   const isClientSide = !ctx;
