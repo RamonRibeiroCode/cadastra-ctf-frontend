@@ -26,6 +26,12 @@ const nextConfig = {
         port: "3333",
         pathname: "/files/**",
       },
+      {
+        protocol: "https",
+        hostname: "m3-ctf-app-44eyr.ondigitalocean.app",
+        port: "",
+        pathname: "/files/**",
+      },
     ],
   },
 };
