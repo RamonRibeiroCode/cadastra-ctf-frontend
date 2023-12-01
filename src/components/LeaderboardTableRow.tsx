@@ -43,13 +43,15 @@ export default function RankingTableRow({
         </div>
       </td>
       <td className="py-6">
-        <Image
-          className="rounded-full"
-          src={scoreboardUser.avatarUrl}
-          width={45}
-          height={45}
-          alt="img"
-        />
+        {scoreboardUser.avatarUrl && (
+          <Image
+            className="rounded-full"
+            src={scoreboardUser.avatarUrl}
+            width={45}
+            height={45}
+            alt="img"
+          />
+        )}
       </td>
       <td className="py-6">
         <div className="flex flex-col ml-4">
