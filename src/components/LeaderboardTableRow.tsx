@@ -45,7 +45,7 @@ export default function RankingTableRow({
       <td className="py-6">
         {scoreboardUser.avatarUrl && (
           <Image
-            className="rounded-full"
+            className="rounded-full aspect-square object-contain bg-black"
             src={scoreboardUser.avatarUrl}
             width={45}
             height={45}

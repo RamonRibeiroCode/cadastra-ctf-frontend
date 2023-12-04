@@ -40,7 +40,7 @@ export default function ChallengeListItem({
             className="bg-neutral-gray-senary w-[50px] h-[50px] rounded-md border"
             style={{ borderColor: getChallengeDifficultyColor(difficulty) }}
           >
-            <Image src={iconUrl} alt="" width={50} height={50} />
+            {iconUrl && <Image src={iconUrl} alt="" width={50} height={50} />}
           </div>
 
           {wasCompletedByUser && (
@@ -101,7 +101,7 @@ export default function ChallengeListItem({
             <div className="w-[35px] h-[35px]">
               {firstBloodIconUrl && (
                 <Image
-                  className="mt-1 rounded-full"
+                  className="mt-1 rounded-full aspect-square object-contain bg-black"
                   src={firstBloodIconUrl}
                   width={35}
                   height={35}

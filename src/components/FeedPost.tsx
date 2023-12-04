@@ -1,9 +1,9 @@
 import Image from "next/image";
 
-import HeartOutline from "@/icons/HeartOutline";
-import RocketTakeoff from "@/icons/RocketTakeoff";
-import HandThumbsUp from "@/icons/HandThumbsUp";
-import WrenchAdjustable from "@/icons/WrenchAdjustable";
+// import HeartOutline from "@/icons/HeartOutline";
+// import RocketTakeoff from "@/icons/RocketTakeoff";
+// import HandThumbsUp from "@/icons/HandThumbsUp";
+// import WrenchAdjustable from "@/icons/WrenchAdjustable";
 import { Activity } from "@/typings/activity";
 import { getFormattedTimeAgo, getLowerSnakeName } from "@/helpers/format";
 
@@ -13,13 +13,16 @@ export default function FeedPost({ user, flag, createdAt }: Activity) {
   return (
     <li className="w-full mb-10 bg-primary-default p-7 rounded-lg">
       <div className="flex items-center">
-        <Image
-          className="rounded-md"
-          src={user.avatarUrl}
-          alt=""
-          width={50}
-          height={50}
-        />
+        {user.avatarUrl && (
+          <Image
+            className="rounded-md aspect-square object-contain bg-black"
+            src={user.avatarUrl}
+            alt=""
+            width={50}
+            height={50}
+          />
+        )}
+
         <div className="flex-1 ml-4">
           <div className="flex items-center">
             <span className="text-neutral-gray-secondary font-medium uppercase">

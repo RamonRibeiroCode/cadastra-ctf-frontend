@@ -12,7 +12,7 @@ export default function TopBar() {
 
   const avatarOrPlaceHolder = user.avatar ? (
     <Image
-      className="rounded-md overflow-hidden"
+      className="rounded-md overflow-hidden aspect-square object-contain bg-black"
       width={40}
       height={40}
       src={user.avatar}

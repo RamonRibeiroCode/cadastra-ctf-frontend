@@ -30,7 +30,7 @@ export default function Profile({ children }: { children: React.ReactNode }) {
           <div className="relative mr-6">
             {user.avatarUrl ? (
               <Image
-                className="rounded-md overflow-hidden"
+                className="rounded-md overflow-hidden aspect-square object-contain bg-black"
                 width={125}
                 height={125}
                 src={user.avatarUrl}
@@ -75,7 +75,7 @@ export default function Profile({ children }: { children: React.ReactNode }) {
                     Progresso nos desafios
                   </span>
                   <span className="text-sm font-semibold text-white leading-5">
-                    {(user.points * 100) / config.maxPoints}%
+                    {Math.round((user.points * 100) / config.maxPoints)}%
                   </span>
                 </div>
 

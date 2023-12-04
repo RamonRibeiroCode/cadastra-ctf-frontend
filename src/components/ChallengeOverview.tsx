@@ -161,13 +161,15 @@ export default function ChallengeOverview({
           className="flex justify-center items-center w-[200px] h-[245px] border rounded-lg bg-neutral-gray-senary"
           style={{ borderColor: getChallengeDifficultyColor(difficulty) }}
         >
-          <Image
-            className="floating"
-            src={imageUrl}
-            width={75}
-            height={75}
-            alt=""
-          />
+          {imageUrl && (
+            <Image
+              className="floating"
+              src={imageUrl}
+              width={75}
+              height={75}
+              alt=""
+            />
+          )}
         </div>
 
         <div className="ml-5 flex-1">
@@ -252,7 +254,7 @@ export default function ChallengeOverview({
               <p className="flex items-center mt-2 text-white font-bold">
                 {firstBloodAvatarUrl && (
                   <Image
-                    className="mr-1 rounded-full"
+                    className="mr-1 rounded-full aspect-square object-contain bg-black"
                     src={firstBloodAvatarUrl}
                     width={25}
                     height={25}

@@ -72,7 +72,7 @@ export default function ProfileSettings() {
               <div className="relative w-fit">
                 {hasPreviewOrAvatarUrl ? (
                   <Image
-                    className="rounded-md"
+                    className="rounded-md aspect-square object-contain bg-black"
                     width={125}
                     height={125}
                     src={avatarPreview ?? user.avatarUrl}

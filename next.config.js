@@ -28,9 +28,9 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "m3-ctf-app-44eyr.ondigitalocean.app",
+        hostname: "m3-ctf.s3.amazonaws.com",
         port: "",
-        pathname: "/files/**",
+        pathname: "/**",
       },
     ],
   },
