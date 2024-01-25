@@ -17,9 +17,9 @@ export default function Challenges() {
   }
 
   return (
-    <div className="my-10">
+    <div className="my-10 px-8">
       <div className="max-w-7xl mx-auto">
-        <ul className="grid grid-cols-3 gap-7">
+        <ul className="grid grid-cols-1 gap-7 md:grid-cols-2 xl:grid-cols-3">
           {challenges.map((challenge) => (
             <ChallengeListItem
               key={challenge.releaseAt}
