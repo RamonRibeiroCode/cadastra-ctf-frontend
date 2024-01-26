@@ -72,7 +72,10 @@ export default function AdminUsers() {
 
         <tbody>
           {users.map((user) => (
-            <tr className="border-b border-[#2b2b40] border-dashed">
+            <tr
+              key={user.email}
+              className="border-b border-[#2b2b40] border-dashed"
+            >
               <td className="py-6 font-medium text-left">
                 <div className="flex items-center space-x-4">
                   {user.avatarUrl && (

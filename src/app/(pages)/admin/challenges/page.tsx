@@ -90,7 +90,10 @@ export default function AdminChallenges() {
             );
 
             return (
-              <tr className="border-b border-[#2b2b40] border-dashed">
+              <tr
+                key={challenge.createdAt}
+                className="border-b border-[#2b2b40] border-dashed"
+              >
                 <td className="py-6 font-medium text-left">
                   <div className="flex items-center space-x-4">
                     {challenge.imageUrl && (
