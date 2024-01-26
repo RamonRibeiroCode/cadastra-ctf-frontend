@@ -60,8 +60,6 @@ export default function ChallengeOverview({
   const [loading, setLoading] = useState(false);
   const { remainingSeconds } = useCountDown(releaseAt);
 
-  const countDownWasFinished = remainingSeconds === 0;
-
   const formattedRemainingMinutes = padHour(
     getMinutesBySeconds(remainingSeconds)
   );
@@ -99,6 +97,8 @@ export default function ChallengeOverview({
     }
   };
 
+  const countDownWasFinished = remainingSeconds === 0;
+
   return (
     <div className="bg-primary-default rounded-lg">
       {url && !wasCompletedByUser && (
@@ -135,9 +135,7 @@ export default function ChallengeOverview({
 
               <button
                 disabled={loading}
-                className={`flex items-center h-10 px-2 ${
-                  loading ? "cursor-not-allowed" : "cursor-pointer"
-                }`}
+                className="flex items-center h-10 px-2 cursor-pointer disabled:cursor-not-allowed"
                 onClick={submitFlag}
               >
                 <Send fill={loading ? "#cccccc" : "#4caf50"} />

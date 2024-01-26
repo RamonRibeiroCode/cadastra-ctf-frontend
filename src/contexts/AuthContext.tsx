@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const handleLogin = useCallback(
     async (email: string, password: string) => {
-      const response = await api.post("/login", {
+      const response = await api.post("/sessions/login", {
         email,
         password,
       });

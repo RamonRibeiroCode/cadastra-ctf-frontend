@@ -5,9 +5,7 @@ import LeaderboardTableRow from "@/components/LeaderboardTableRow";
 import { fetcher } from "@/lib/swr";
 import { ScoreboardResponse } from "@/typings/scoreboard";
 
-interface LeaderboardTableProps {}
-
-export default function LeaderboardTable({}: LeaderboardTableProps) {
+export default function LeaderboardTable() {
   const { data, isLoading } = useSWR<ScoreboardResponse>(
     "/users/scoreboard",
     fetcher
