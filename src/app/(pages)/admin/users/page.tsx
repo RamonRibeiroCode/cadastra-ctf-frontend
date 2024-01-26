@@ -49,7 +49,7 @@ export default function AdminUsers() {
   return (
     <AdminWrapper>
       <div className="flex justify-between">
-        <h1 className="text-3xl text-white mb-6">Users</h1>
+        <h1 className="text-white mb-6">Users</h1>
         <Link
           className="flex justify-center items-center w-[115px] h-[42px] rounded-md transition-all bg-[#3699ff] hover:bg-[#187de4] text-sm font-medium text-white"
           href="/admin/users/create"
