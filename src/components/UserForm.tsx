@@ -90,13 +90,15 @@ export default function UserForm({
         />
       </div>
 
-      <div className="mb-4">
-        <ProfileInput
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-        />
-      </div>
+      {type === "CREATE" && (
+        <div className="mb-4">
+          <ProfileInput
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+          />
+        </div>
+      )}
 
       <div className="mb-4">
         <ProfileInput

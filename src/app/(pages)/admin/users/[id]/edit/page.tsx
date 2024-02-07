@@ -4,8 +4,8 @@ import { useRouter } from "next/navigation";
 
 import api from "@/services/api";
 import AdminWrapper from "@/components/layout/AdminWrapper";
-import { User } from "@/typings/user";
 import UserForm from "@/components/UserForm";
+import { CreatedOrEditUser } from "../../page";
 
 interface ChallengeDetailProps {
   params: {
@@ -20,7 +20,7 @@ export default function AdminUserEdit({
 
   const { push } = useRouter();
 
-  const handleSaveUser = async (user: Omit<User, "avatarUrl">) => {
+  const handleSaveUser = async (user: CreatedOrEditUser) => {
     await api.put(`/admin/users/${id}`, {
       name: user.name,
       email: user.email,

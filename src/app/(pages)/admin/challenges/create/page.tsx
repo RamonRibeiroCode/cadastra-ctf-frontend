@@ -5,12 +5,20 @@ import { CreatedOrEditChallenge } from "../page";
 
 import AdminWrapper from "@/components/layout/AdminWrapper";
 import ChallengeForm from "@/components/ChallengeForm";
+import api from "@/services/api";
 
 export default function AdminCreateChallenge() {
   const { push } = useRouter();
 
   const handleCreateChallenge = async (challenge: CreatedOrEditChallenge) => {
-    push("/admin/users");
+    await api.post("/admin/challenges", {
+      ...challenge,
+      flags: JSON.stringify(
+        challenge.flags.map((flag) => ({ ...flag, id: undefined }))
+      ),
+    });
+
+    push("/admin/challenges");
   };
 
   return (

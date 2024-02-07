@@ -16,8 +16,7 @@ import DifficultyFlag from "@/components/ui/DifficultyFlag";
 import api from "@/services/api";
 import { useState } from "react";
 
-export interface CreatedOrEditChallenge
-  extends Pick<IChallengeListItem, "name"> {
+export interface CreatedOrEditChallenge {
   name: string;
   description: string;
   difficulty: Difficulty;
