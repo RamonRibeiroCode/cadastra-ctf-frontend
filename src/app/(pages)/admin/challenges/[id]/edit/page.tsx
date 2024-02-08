@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import AdminWrapper from "@/components/layout/AdminWrapper";
 import { CreatedOrEditChallenge } from "../../page";
 import ChallengeForm from "@/components/ChallengeForm";
+import api from "@/services/api";
 
 interface ChallengeDetailProps {
   params: {
@@ -20,11 +21,15 @@ export default function AdminChallengeEdit({
   const { push } = useRouter();
 
   const handleSaveChallenge = async (challenge: CreatedOrEditChallenge) => {
-    console.log(challenge);
+    await api.put(`/admin/challenges/${id}`, {
+      ...challenge,
+      flags: JSON.stringify(
+        challenge.flags.map((flag) => ({ ...flag, id: undefined }))
+      ),
+    });
 
     push("/admin/challenges");
   };
-
   return (
     <AdminWrapper>
       <h1 className="text-3xl text-white mb-6">Editar</h1>

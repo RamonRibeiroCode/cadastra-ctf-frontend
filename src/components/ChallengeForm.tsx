@@ -40,50 +40,61 @@ export default function ChallengeForm({
   const [defaultChallenge, setDefaultChallenge] =
     useState<CreatedOrEditChallenge | null>(null);
 
+  const allFieldsAreFilled = Boolean(name && description);
+
+  const oneFlagWasAddedAndAllFilled =
+    flags.length > 0 &&
+    flags.every((flag) => flag.flag && flag.points && flag.difficulty);
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     onSubmit({ name, description, difficulty, url, releaseAt, flags });
   };
 
-  const getDefaultChallenge = async () => {
-    if (type !== "EDIT" || !challengeId) {
-      return;
-    }
-
-    const response = await api.get<CreatedOrEditChallenge>(
-      `/admin/challenges/${challengeId}`
-    );
-
-    const challenge = response.data;
-
-    if (response) {
-      setName(challenge.name);
-      setDescription(challenge.description);
-      setDifficulty(challenge.difficulty);
-      setDefaultChallenge(challenge);
-    }
-  };
-
   const getIFButtonShouldBeEnabled = () => {
     let buttonShouldBeEnabled = false;
 
     if (type === "EDIT") {
-      const isEditingChallenge =
-        defaultChallenge &&
-        (name !== defaultChallenge.name ||
-          description !== defaultChallenge.description ||
-          difficulty !== defaultChallenge.difficulty ||
-          url !== defaultChallenge.url ||
-          releaseAt !== defaultChallenge.releaseAt);
+      if (!defaultChallenge) {
+        return false;
+      }
 
-      buttonShouldBeEnabled = isEditingChallenge;
+      const isEditingChallenge =
+        name !== defaultChallenge.name ||
+        description !== defaultChallenge.description ||
+        difficulty !== defaultChallenge.difficulty ||
+        url !== defaultChallenge.url ||
+        releaseAt !== defaultChallenge.releaseAt;
+
+      let isEditingSomeFlag = false;
+
+      if (flags.length) {
+        if (defaultChallenge.flags.length !== flags.length) {
+          isEditingSomeFlag = true;
+        } else {
+          const someFlagWasEdited = flags?.some((flag, index) => {
+            const flagOnDefaultChallenge = defaultChallenge.flags[index];
+
+            return (
+              flagOnDefaultChallenge.flag !== flag.flag ||
+              flagOnDefaultChallenge.points !== flag.points ||
+              flagOnDefaultChallenge.difficulty !== flag.difficulty
+            );
+          });
+
+          isEditingSomeFlag = someFlagWasEdited;
+        }
+      }
+
+      buttonShouldBeEnabled =
+        (isEditingChallenge || isEditingSomeFlag) &&
+        allFieldsAreFilled &&
+        oneFlagWasAddedAndAllFilled;
     }
 
     if (type === "CREATE") {
-      const allFieldsAreFilled = Boolean(name && description);
-
-      buttonShouldBeEnabled = allFieldsAreFilled;
+      buttonShouldBeEnabled = allFieldsAreFilled && oneFlagWasAddedAndAllFilled;
     }
 
     return buttonShouldBeEnabled;
@@ -134,6 +145,29 @@ export default function ChallengeForm({
 
   const handleDeleteFlag = (id: string) => {
     setFlags((oldFlags) => oldFlags.filter((oldFlag) => oldFlag.id !== id));
+  };
+
+  const getDefaultChallenge = async () => {
+    if (type !== "EDIT" || !challengeId) {
+      return;
+    }
+
+    const response = await api.get<CreatedOrEditChallenge>(
+      `/admin/challenges/${challengeId}`
+    );
+
+    const challenge = response.data;
+
+    if (response) {
+      setName(challenge.name);
+      setDescription(challenge.description);
+      setDifficulty(challenge.difficulty);
+      setUrl(challenge.url);
+      setReleaseAt(challenge.releaseAt);
+      setFlags(challenge.flags.map((flag) => ({ ...flag, id: uuid() })));
+
+      setDefaultChallenge(challenge);
+    }
   };
 
   useEffect(() => {
@@ -221,7 +255,7 @@ export default function ChallengeForm({
                   }
                 />
 
-                <div className="w-32">
+                <div className="w-36">
                   <ProfileInput
                     placeholder="Difficulty"
                     value={flag.difficulty}
