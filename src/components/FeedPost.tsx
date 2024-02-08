@@ -15,7 +15,7 @@ export default function FeedPost({ user, flag, createdAt }: Activity) {
       <div className="flex items-center">
         {user.avatarUrl && (
           <Image
-            className="rounded-md aspect-square object-contain bg-black"
+            className="rounded-md aspect-square object-contain"
             src={user.avatarUrl}
             alt=""
             width={50}

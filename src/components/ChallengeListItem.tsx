@@ -101,7 +101,7 @@ export default function ChallengeListItem({
             <div className="w-[35px] h-[35px]">
               {firstBloodIconUrl && (
                 <Image
-                  className="mt-1 rounded-full aspect-square object-contain bg-black"
+                  className="mt-1 rounded-full aspect-square object-contain"
                   src={firstBloodIconUrl}
                   width={35}
                   height={35}

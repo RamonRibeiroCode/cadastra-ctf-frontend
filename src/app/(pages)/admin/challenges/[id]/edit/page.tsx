@@ -6,6 +6,7 @@ import AdminWrapper from "@/components/layout/AdminWrapper";
 import { CreatedOrEditChallenge } from "../../page";
 import ChallengeForm from "@/components/ChallengeForm";
 import api from "@/services/api";
+import { jsonToFormData } from "@/helpers/format";
 
 interface ChallengeDetailProps {
   params: {
@@ -21,12 +22,14 @@ export default function AdminChallengeEdit({
   const { push } = useRouter();
 
   const handleSaveChallenge = async (challenge: CreatedOrEditChallenge) => {
-    await api.put(`/admin/challenges/${id}`, {
+    const formData = jsonToFormData({
       ...challenge,
       flags: JSON.stringify(
         challenge.flags.map((flag) => ({ ...flag, id: undefined }))
       ),
     });
+
+    await api.put(`/admin/challenges/${id}`, formData);
 
     push("/admin/challenges");
   };

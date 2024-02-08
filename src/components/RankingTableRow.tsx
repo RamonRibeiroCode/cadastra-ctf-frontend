@@ -52,10 +52,11 @@ export default function RankingTableRow({
           {isOnPodium && <Trophy fill={getFillTrophy()} />}
         </div>
       </td>
+
       <td className="py-4">
         {userAvatarUrl && (
           <Image
-            className="rounded-full aspect-square object-contain bg-black"
+            className="rounded-full aspect-square object-contain"
             src={userAvatarUrl}
             width={45}
             height={45}
@@ -63,6 +64,7 @@ export default function RankingTableRow({
           />
         )}
       </td>
+
       <td className="py-4">
         <div className="flex flex-col ml-4">
           <a href="#" className="text-white font-medium text-sm">

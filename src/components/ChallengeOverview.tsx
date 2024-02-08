@@ -252,7 +252,7 @@ export default function ChallengeOverview({
               <p className="flex items-center mt-2 text-white font-bold">
                 {firstBloodAvatarUrl && (
                   <Image
-                    className="mr-1 rounded-full aspect-square object-contain bg-black"
+                    className="mr-1 rounded-full aspect-square object-contain"
                     src={firstBloodAvatarUrl}
                     width={25}
                     height={25}

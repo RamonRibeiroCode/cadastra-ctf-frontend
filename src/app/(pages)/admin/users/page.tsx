@@ -80,7 +80,7 @@ export default function AdminUsers() {
                 <div className="flex items-center space-x-4">
                   {user.avatarUrl && (
                     <Image
-                      className="rounded-full aspect-square object-contain bg-black"
+                      className="rounded-full aspect-square object-contain"
                       src={user.avatarUrl}
                       width={45}
                       height={45}

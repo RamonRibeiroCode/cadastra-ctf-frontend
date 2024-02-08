@@ -22,6 +22,8 @@ export interface CreatedOrEditChallenge {
   difficulty: Difficulty;
   url: string;
   releaseAt: string;
+  imageUrl?: string;
+  image?: File;
   flags: CreatedOrEditChallengeFlag[];
 }
 
@@ -97,7 +99,7 @@ export default function AdminChallenges() {
                   <div className="flex items-center space-x-4">
                     {challenge.imageUrl && (
                       <Image
-                        className="rounded-full aspect-square object-contain bg-black"
+                        className="aspect-square object-contain"
                         src={challenge.imageUrl}
                         width={45}
                         height={45}

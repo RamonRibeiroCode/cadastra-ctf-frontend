@@ -6,6 +6,7 @@ import { Difficulty } from "@/typings/challenge";
 import { uuid } from "uuidv4";
 import Plus from "@/icons/Plus";
 import Trash3Fill from "@/icons/Trash3Fill";
+import Upload from "./ui/Upload";
 
 interface ChallengeFormProps {
   type: "EDIT" | "CREATE";
@@ -37,6 +38,10 @@ export default function ChallengeForm({
     { id: uuid(), difficulty: "EASY", flag: "", points: 0 },
   ]);
 
+  const [imagePreview, setImagePreview] = useState<null | string>(null);
+  const [imageFile, setImageFile] = useState<null | File>(null);
+  const [imageUrl, setImageUrl] = useState<null | string>(null);
+
   const [defaultChallenge, setDefaultChallenge] =
     useState<CreatedOrEditChallenge | null>(null);
 
@@ -49,7 +54,15 @@ export default function ChallengeForm({
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    onSubmit({ name, description, difficulty, url, releaseAt, flags });
+    onSubmit({
+      name,
+      description,
+      difficulty,
+      url,
+      releaseAt,
+      flags,
+      image: imageFile,
+    });
   };
 
   const getIFButtonShouldBeEnabled = () => {
@@ -147,6 +160,13 @@ export default function ChallengeForm({
     setFlags((oldFlags) => oldFlags.filter((oldFlag) => oldFlag.id !== id));
   };
 
+  const handleImage = (files: FileList) => {
+    const file = files.item(0);
+
+    setImagePreview(URL.createObjectURL(file));
+    setImageFile(file);
+  };
+
   const getDefaultChallenge = async () => {
     if (type !== "EDIT" || !challengeId) {
       return;
@@ -164,6 +184,7 @@ export default function ChallengeForm({
       setDifficulty(challenge.difficulty);
       setUrl(challenge.url);
       setReleaseAt(challenge.releaseAt);
+      setImageUrl(challenge.imageUrl);
       setFlags(challenge.flags.map((flag) => ({ ...flag, id: uuid() })));
 
       setDefaultChallenge(challenge);
@@ -179,7 +200,13 @@ export default function ChallengeForm({
       <div className="w-1/2">
         <span className="block text-white mb-4">Info</span>
 
-        <div className="mb-4">
+        <Upload
+          handleImage={handleImage}
+          imagePreview={imagePreview}
+          imageUrl={imageUrl}
+        />
+
+        <div className="my-4">
           <ProfileInput
             value={name}
             onChange={(e) => setName(e.target.value)}
