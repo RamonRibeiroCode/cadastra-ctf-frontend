@@ -23,6 +23,10 @@ export default function Profile({ children }: { children: React.ReactNode }) {
     return null;
   }
 
+  const percent = (user.points * 100) / config.maxPoints;
+
+  const percentWithMaximum = percent > 100 ? 100 : percent;
+
   return (
     <div className="py-7 w-full mx-auto max-w-7xl">
       <div className="w-full bg-primary-default rounded-lg p-[30px] pb-0 mb-8">
@@ -75,7 +79,7 @@ export default function Profile({ children }: { children: React.ReactNode }) {
                     Progresso nos desafios
                   </span>
                   <span className="text-sm font-semibold text-white leading-5">
-                    {Math.round((user.points * 100) / config.maxPoints)}%
+                    {Math.round(percentWithMaximum)}%
                   </span>
                 </div>
 
@@ -83,7 +87,7 @@ export default function Profile({ children }: { children: React.ReactNode }) {
                   <div
                     className="h-full bg-white rounded-md"
                     style={{
-                      width: `${(user.points * 100) / config.maxPoints}%`,
+                      width: `${percentWithMaximum}%`,
                     }}
                   />
                 </div>

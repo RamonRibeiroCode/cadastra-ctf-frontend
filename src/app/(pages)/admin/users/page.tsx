@@ -2,15 +2,16 @@
 
 import Image from "next/image";
 import useSWR from "swr";
+import { useState } from "react";
+import Link from "next/link";
 
 import AdminWrapper from "@/components/layout/AdminWrapper";
 import { fetcher } from "@/lib/swr";
 import { User } from "@/typings/user";
 import Trash3Fill from "@/icons/Trash3Fill";
 import PencilSquare from "@/icons/PencilSquare";
-import Link from "next/link";
 import api from "@/services/api";
-import { useState } from "react";
+import ShieldLockFill from "@/icons/ShieldLockFill";
 
 export interface AdminUser extends User {
   id: number;
@@ -27,6 +28,7 @@ export default function AdminUsers() {
     mutate,
   } = useSWR<AdminUser[]>("/admin/users", fetcher);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isReseting, setIsResetingPassword] = useState(false);
 
   if (usersIsLoading) {
     return null;
@@ -44,6 +46,20 @@ export default function AdminUsers() {
     }
 
     setIsDeleting(false);
+  };
+
+  const handleResetingUserPassword = async (id: number) => {
+    setIsResetingPassword(true);
+
+    try {
+      await api.post(`/admin/users/${id}/password-reset`);
+
+      mutate();
+    } catch (error) {
+      console.error(error);
+    }
+
+    setIsResetingPassword(false);
   };
 
   return (
@@ -117,6 +133,14 @@ export default function AdminUsers() {
                   onClick={() => handleDeleteUser(user.id)}
                 >
                   <Trash3Fill />
+                </button>
+
+                <button
+                  disabled={isReseting}
+                  className="align-middle p-1.5 rounded-md bg-[#3699ff] text-white hover:opacity-80 disabled:bg-neutral-gray disabled:cursor-not-allowed"
+                  onClick={() => handleResetingUserPassword(user.id)}
+                >
+                  <ShieldLockFill />
                 </button>
               </td>
             </tr>

@@ -15,9 +15,6 @@ export default function RankingTableRow({
   scoreboardUser,
   maxPoints,
 }: RankingTableRowProps) {
-  const onPodiumNumbers = [1, 2, 3];
-  const isOnPodium = onPodiumNumbers.includes(position);
-
   const getFillTrophy = () => {
     switch (position) {
       case 1:
@@ -33,6 +30,13 @@ export default function RankingTableRow({
         return "#ffd900";
     }
   };
+
+  const onPodiumNumbers = [1, 2, 3];
+  const isOnPodium = onPodiumNumbers.includes(position);
+
+  const percent = (scoreboardUser.points * 100) / maxPoints;
+
+  const percentWithMaximum = percent > 100 ? 100 : percent;
 
   return (
     <tr className="border-b border-[#2b2b40] border-dashed">
@@ -81,7 +85,7 @@ export default function RankingTableRow({
           <div className="w-[300px] h-1.5 rounded-md bg-[rgba(255,255,255,0.1)]">
             <div
               className="h-full bg-white rounded-md"
-              style={{ width: `${(scoreboardUser.points * 100) / maxPoints}%` }}
+              style={{ width: `${percentWithMaximum}%` }}
             />
           </div>
         </div>
