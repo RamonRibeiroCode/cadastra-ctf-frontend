@@ -25,6 +25,7 @@ export default function AdminUserEdit({
       name: user.name,
       email: user.email,
       points: user.points,
+      role: user.role,
     });
 
     push("/admin/users");

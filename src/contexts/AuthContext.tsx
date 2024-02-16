@@ -27,13 +27,15 @@ interface User {
   id: number;
   name: string;
   email: string;
-  role: "USER" | "ADMIN";
+  role: UserRole;
   avatar: string | null;
 }
 
 interface AuthProviderProps {
   children: ReactNode;
 }
+
+export type UserRole = "USER" | "ADMIN";
 
 export const AuthContext = createContext({} as AuthContext);
 

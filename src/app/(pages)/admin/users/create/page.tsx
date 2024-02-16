@@ -11,7 +11,12 @@ export default function AdminCreateUser() {
   const { push } = useRouter();
 
   const handleCreateUser = async (user: CreatedOrEditUser) => {
-    await api.post("/admin/users", user);
+    await api.post("/admin/users", {
+      name: user.name,
+      email: user.email,
+      points: user.points,
+      role: user.role,
+    });
 
     push("/admin/users");
   };

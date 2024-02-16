@@ -3,6 +3,7 @@ import { FormEvent, useEffect, useState } from "react";
 import ProfileInput from "./ui/ProfileInput";
 import api from "@/services/api";
 import { CreatedOrEditUser } from "@/app/(pages)/admin/users/page";
+import { UserRole } from "@/contexts/AuthContext";
 
 interface UserFormProps {
   type: "EDIT" | "CREATE";
@@ -19,12 +20,14 @@ export default function UserForm({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [points, setPoints] = useState<number>(0);
+  const [role, setRole] = useState<UserRole>("USER");
+
   const [defaultUser, setDefaultUser] = useState<User | null>(null);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    onSubmit({ name, email, password, points });
+    onSubmit({ name, email, password, points, role });
   };
 
   const getEditUser = async () => {
@@ -53,7 +56,8 @@ export default function UserForm({
         defaultUser &&
         (name !== defaultUser.name ||
           email !== defaultUser.email ||
-          points !== defaultUser.points);
+          points !== defaultUser.points ||
+          role !== defaultUser.role);
 
       buttonShouldBeEnabled = isEditingUser;
     }
@@ -70,6 +74,8 @@ export default function UserForm({
   useEffect(() => {
     getEditUser();
   }, []);
+
+  console.log(defaultUser);
 
   return (
     <form onSubmit={(e) => handleSubmit(e)} className="max-w-3xl">
@@ -113,6 +119,14 @@ export default function UserForm({
             setPoints(value);
           }}
           placeholder="Points"
+        />
+      </div>
+
+      <div className="mb-4">
+        <ProfileInput
+          value={role}
+          onChange={(e) => setRole(e.target.value as UserRole)}
+          placeholder="Role"
         />
       </div>
 
