@@ -24,6 +24,7 @@ export interface CreatedOrEditChallenge {
   releaseAt: string;
   imageUrl?: string;
   image?: File;
+  flagWasEdited: boolean;
   flags: CreatedOrEditChallengeFlag[];
 }
 

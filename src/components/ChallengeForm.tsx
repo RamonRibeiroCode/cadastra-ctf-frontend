@@ -54,6 +54,12 @@ export default function ChallengeForm({
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const flagWasEdited =
+      JSON.stringify(flags.map((flag) => ({ ...flag, id: undefined }))) !==
+      JSON.stringify(
+        defaultChallenge.flags.map((flag) => ({ ...flag, id: undefined }))
+      );
+
     onSubmit({
       name,
       description,
@@ -62,6 +68,7 @@ export default function ChallengeForm({
       releaseAt,
       flags,
       image: imageFile,
+      flagWasEdited,
     });
   };
 
