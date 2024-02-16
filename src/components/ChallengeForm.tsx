@@ -280,7 +280,7 @@ export default function ChallengeForm({
         <ul className="space-y-4">
           {flags.map((flag) => {
             return (
-              <li className="flex items-center space-x-3">
+              <li key={flag.flag} className="flex items-center space-x-3">
                 <ProfileInput
                   placeholder="Flag"
                   value={flag.flag}
