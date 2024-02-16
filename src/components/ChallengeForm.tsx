@@ -54,11 +54,15 @@ export default function ChallengeForm({
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const flagWasEdited =
-      JSON.stringify(flags.map((flag) => ({ ...flag, id: undefined }))) !==
-      JSON.stringify(
-        defaultChallenge.flags.map((flag) => ({ ...flag, id: undefined }))
-      );
+    let flagWasEdited = false;
+
+    if (defaultChallenge) {
+      flagWasEdited =
+        JSON.stringify(flags.map((flag) => ({ ...flag, id: undefined }))) !==
+        JSON.stringify(
+          defaultChallenge.flags.map((flag) => ({ ...flag, id: undefined }))
+        );
+    }
 
     onSubmit({
       name,
