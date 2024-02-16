@@ -12,6 +12,10 @@ const links = [
     label: "Configurações",
     href: "/profile/settings",
   },
+  {
+    label: "Autenticação",
+    href: "/profile/auth",
+  },
 ];
 
 export default function ProfileLinks() {

@@ -1,14 +1,11 @@
 "use client";
 
-import Image from "next/image";
-import PencilFill from "@/icons/PencilFill";
 import ProfileInput from "@/components/ui/ProfileInput";
 import useSWR from "swr";
 import { fetcher } from "@/lib/swr";
 import { useEffect, useState } from "react";
 import api from "@/services/api";
 import { useAuth } from "@/contexts/AuthContext";
-import ImagePlaceholder from "@/icons/ImagePlaceholder";
 import { User } from "@/typings/user";
 import Upload from "@/components/ui/Upload";
 
@@ -18,6 +15,7 @@ export default function ProfileSettings() {
     isLoading,
     mutate: refetchUser,
   } = useSWR<User>("/users/profile", fetcher);
+
   const [avatarPreview, setAvatarPreview] = useState<null | string>(null);
   const [avatarFile, setAvatarFile] = useState<null | File>(null);
   const [name, setName] = useState(user.name);
@@ -70,8 +68,8 @@ export default function ProfileSettings() {
           <div className="w-2/3">
             <Upload
               handleImage={handleImage}
-              avatarPreview={avatarPreview}
-              avatarUrl={user.avatarUrl}
+              imagePreview={avatarPreview}
+              imageUrl={user.avatarUrl}
             />
           </div>
         </div>
