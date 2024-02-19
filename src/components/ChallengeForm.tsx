@@ -7,6 +7,9 @@ import { uuid } from "uuidv4";
 import Plus from "@/icons/Plus";
 import Trash3Fill from "@/icons/Trash3Fill";
 import Upload from "./ui/Upload";
+import DifficultySelect from "./ui/DifficultySelect";
+import { difficultyOptions } from "@/constants";
+import { getChallengeDifficultyLabel } from "@/helpers/challenge";
 
 interface ChallengeFormProps {
   type: "EDIT" | "CREATE";
@@ -208,6 +211,8 @@ export default function ChallengeForm({
     getDefaultChallenge();
   }, []);
 
+  console.log(flags);
+
   return (
     <form onSubmit={(e) => handleSubmit(e)} className="flex space-x-4">
       <div className="w-1/2">
@@ -244,11 +249,11 @@ export default function ChallengeForm({
         </div>
 
         <div className="flex w-full space-x-4 mb-4">
-          {/* Change to Select */}
-          <ProfileInput
-            value={difficulty}
-            onChange={(e) => setDifficulty(e.target.value as Difficulty)}
+          <DifficultySelect
+            selected={difficulty}
             placeholder="Difficulty"
+            options={difficultyOptions}
+            onSelect={(option) => setDifficulty(option)}
           />
 
           {/* Change to Date Picker */}
@@ -270,12 +275,12 @@ export default function ChallengeForm({
       </div>
 
       <div className="w-1/2">
-        <div className="flex justify-between mb-2">
+        <div className="flex items-center mb-2">
           <span className="text-white">Flags</span>
 
           <button
-            disabled={flags.length === 3}
-            className="flex justify-center items-center w-8 h-8 bg-green-700 rounded-md text-white hover:opacity-80 disabled:bg-gray-400 disabled:cursor-not-allowed"
+            disabled={flags.length >= 3}
+            className="flex justify-center items-center ml-2 w-7 h-7 bg-green-700 rounded-md text-white hover:opacity-80 disabled:bg-gray-400 disabled:cursor-not-allowed"
             onClick={handleAddFlag}
             type="button"
           >
@@ -284,9 +289,11 @@ export default function ChallengeForm({
         </div>
 
         <ul className="space-y-4">
-          {flags.map((flag) => {
+          {flags.map((flag, index) => {
+            const decrecenteZIndex = Math.floor(1000 / (index + 1));
+
             return (
-              <li key={flag.flag} className="flex items-center space-x-3">
+              <li key={flag.id} className="flex items-center space-x-3">
                 <ProfileInput
                   placeholder="Flag"
                   value={flag.flag}
@@ -295,16 +302,13 @@ export default function ChallengeForm({
                   }
                 />
 
-                <div className="w-36">
-                  <ProfileInput
+                <div className="w-36" style={{ zIndex: decrecenteZIndex }}>
+                  <DifficultySelect
                     placeholder="Difficulty"
-                    value={flag.difficulty}
-                    onChange={(e) =>
-                      handleChangeFlagInfo(
-                        flag.id,
-                        e.target.value,
-                        "difficulty"
-                      )
+                    options={difficultyOptions}
+                    selected={flag.difficulty}
+                    onSelect={(value) =>
+                      handleChangeFlagInfo(flag.id, value, "difficulty")
                     }
                   />
                 </div>
