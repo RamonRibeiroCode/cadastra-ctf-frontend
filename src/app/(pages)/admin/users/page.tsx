@@ -19,6 +19,7 @@ export interface AdminUser extends User {
 
 export interface CreatedOrEditUser extends Omit<User, "avatarUrl"> {
   password?: string;
+  avatar?: File;
 }
 
 export default function AdminUsers() {

@@ -4,6 +4,7 @@ import ProfileInput from "./ui/ProfileInput";
 import api from "@/services/api";
 import { CreatedOrEditUser } from "@/app/(pages)/admin/users/page";
 import { UserRole } from "@/contexts/AuthContext";
+import Upload from "./ui/Upload";
 
 interface UserFormProps {
   type: "EDIT" | "CREATE";
@@ -22,12 +23,15 @@ export default function UserForm({
   const [points, setPoints] = useState<number>(0);
   const [role, setRole] = useState<UserRole>("USER");
 
+  const [imagePreview, setImagePreview] = useState<null | string>(null);
+  const [imageFile, setImageFile] = useState<null | File>(null);
+
   const [defaultUser, setDefaultUser] = useState<User | null>(null);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    onSubmit({ name, email, password, points, role });
+    onSubmit({ name, email, password, points, role, avatar: imageFile });
   };
 
   const getEditUser = async () => {
@@ -48,7 +52,7 @@ export default function UserForm({
     }
   };
 
-  const getIFButtonShouldBeEnabled = () => {
+  const getIfButtonShouldBeEnabled = () => {
     let buttonShouldBeEnabled = false;
 
     if (type === "EDIT") {
@@ -59,11 +63,11 @@ export default function UserForm({
           points !== defaultUser.points ||
           role !== defaultUser.role);
 
-      buttonShouldBeEnabled = isEditingUser;
+      buttonShouldBeEnabled = Boolean(isEditingUser || imagePreview);
     }
 
     if (type === "CREATE") {
-      const allFieldsAreFilled = Boolean(name && email);
+      const allFieldsAreFilled = Boolean(name && email && role);
 
       buttonShouldBeEnabled = allFieldsAreFilled;
     }
@@ -71,15 +75,26 @@ export default function UserForm({
     return buttonShouldBeEnabled;
   };
 
+  const handleImage = (files: FileList) => {
+    const file = files.item(0);
+
+    setImagePreview(URL.createObjectURL(file));
+    setImageFile(file);
+  };
+
   useEffect(() => {
     getEditUser();
   }, []);
 
-  console.log(defaultUser);
-
   return (
     <form onSubmit={(e) => handleSubmit(e)} className="max-w-3xl">
-      <div className="mb-4">
+      <Upload
+        handleImage={handleImage}
+        imagePreview={imagePreview}
+        imageUrl={defaultUser?.avatarUrl}
+      />
+
+      <div className="my-4">
         <ProfileInput
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -132,7 +147,7 @@ export default function UserForm({
 
       <button
         type="submit"
-        disabled={!getIFButtonShouldBeEnabled()}
+        disabled={!getIfButtonShouldBeEnabled()}
         className="flex justify-center items-center w-[168px] h-[42px] rounded-md transition-all bg-[#3699ff] hover:bg-[#187de4] disabled:bg-neutral-gray disabled:cursor-not-allowed text-sm font-medium text-white"
       >
         {type === "CREATE" && "Criar Usuario"}

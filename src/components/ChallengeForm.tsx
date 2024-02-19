@@ -40,12 +40,13 @@ export default function ChallengeForm({
 
   const [imagePreview, setImagePreview] = useState<null | string>(null);
   const [imageFile, setImageFile] = useState<null | File>(null);
-  const [imageUrl, setImageUrl] = useState<null | string>(null);
 
   const [defaultChallenge, setDefaultChallenge] =
     useState<CreatedOrEditChallenge | null>(null);
 
-  const allFieldsAreFilled = Boolean(name && description);
+  const allFieldsAreFilled = Boolean(
+    name && description && url && difficulty && releaseAt
+  );
 
   const oneFlagWasAddedAndAllFilled =
     flags.length > 0 &&
@@ -76,7 +77,7 @@ export default function ChallengeForm({
     });
   };
 
-  const getIFButtonShouldBeEnabled = () => {
+  const getIfButtonShouldBeEnabled = () => {
     let buttonShouldBeEnabled = false;
 
     if (type === "EDIT") {
@@ -112,13 +113,15 @@ export default function ChallengeForm({
       }
 
       buttonShouldBeEnabled =
-        (isEditingChallenge || isEditingSomeFlag) &&
+        (isEditingChallenge || isEditingSomeFlag || imagePreview) &&
         allFieldsAreFilled &&
         oneFlagWasAddedAndAllFilled;
     }
 
     if (type === "CREATE") {
-      buttonShouldBeEnabled = allFieldsAreFilled && oneFlagWasAddedAndAllFilled;
+      buttonShouldBeEnabled = Boolean(
+        allFieldsAreFilled && oneFlagWasAddedAndAllFilled && imagePreview
+      );
     }
 
     return buttonShouldBeEnabled;
@@ -195,7 +198,6 @@ export default function ChallengeForm({
       setDifficulty(challenge.difficulty);
       setUrl(challenge.url);
       setReleaseAt(challenge.releaseAt);
-      setImageUrl(challenge.imageUrl);
       setFlags(challenge.flags.map((flag) => ({ ...flag, id: uuid() })));
 
       setDefaultChallenge(challenge);
@@ -214,7 +216,7 @@ export default function ChallengeForm({
         <Upload
           handleImage={handleImage}
           imagePreview={imagePreview}
-          imageUrl={imageUrl}
+          imageUrl={defaultChallenge?.imageUrl}
         />
 
         <div className="my-4">
@@ -259,7 +261,7 @@ export default function ChallengeForm({
 
         <button
           type="submit"
-          disabled={!getIFButtonShouldBeEnabled()}
+          disabled={!getIfButtonShouldBeEnabled()}
           className="flex justify-center items-center w-[168px] h-[42px] rounded-md transition-all bg-[#3699ff] hover:bg-[#187de4] disabled:bg-neutral-gray disabled:cursor-not-allowed text-sm font-medium text-white"
         >
           {type === "CREATE" && "Criar Challenge"}

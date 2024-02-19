@@ -6,6 +6,7 @@ import api from "@/services/api";
 import AdminWrapper from "@/components/layout/AdminWrapper";
 import UserForm from "@/components/UserForm";
 import { CreatedOrEditUser } from "../../page";
+import { jsonToFormData } from "@/helpers/format";
 
 interface ChallengeDetailProps {
   params: {
@@ -21,12 +22,9 @@ export default function AdminUserEdit({
   const { push } = useRouter();
 
   const handleSaveUser = async (user: CreatedOrEditUser) => {
-    await api.put(`/admin/users/${id}`, {
-      name: user.name,
-      email: user.email,
-      points: user.points,
-      role: user.role,
-    });
+    const formData = jsonToFormData(user);
+
+    await api.put(`/admin/users/${id}`, formData);
 
     push("/admin/users");
   };
