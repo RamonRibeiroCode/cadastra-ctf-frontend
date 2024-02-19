@@ -10,12 +10,6 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "app.safecodeweek.com.br",
-        port: "",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
         hostname: "robohash.org",
         port: "",
         pathname: "/**",
@@ -28,7 +22,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "m3-ctf.s3.amazonaws.com",
+        hostname: "cadastra-ctf.s3.amazonaws.com",
         port: "",
         pathname: "/**",
       },

@@ -7,6 +7,7 @@ import DoubleArrow from "@/icons/DoubleArrow";
 import M3Logo from "@/icons/M3Logo";
 import MenuItem, { MenuIcon } from "@/components/MenuItem";
 import MenuTitle from "@/components/MenuTitle";
+import Link from "next/link";
 
 export interface IMenuItem {
   title: string;
@@ -61,7 +62,11 @@ export default function SideBar() {
           openedOrHovered ? "justify-between pl-6" : "justify-center"
         }`}
       >
-        {openedOrHovered && <M3Logo width={38} height={18} />}
+        {openedOrHovered && (
+          <Link href="/">
+            <M3Logo width={38} height={18} />
+          </Link>
+        )}
 
         <button
           className="h-full px-6"

@@ -54,8 +54,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
       const { token, user: responseUser } = response.data;
 
-      setCookie(undefined, "m3ctf.token", token);
-      setCookie(undefined, "m3ctf.user", JSON.stringify(responseUser));
+      setCookie(undefined, "cadastractf.token", token);
+      setCookie(undefined, "cadastractf.user", JSON.stringify(responseUser));
 
       api.defaults.headers.common.authorization = `Bearer ${token}`;
 
@@ -68,8 +68,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const handleLogout = useCallback(() => {
     setUser(null);
 
-    destroyCookie(undefined, "m3ctf.token");
-    destroyCookie(undefined, "m3ctf.user");
+    destroyCookie(undefined, "cadastractf.token");
+    destroyCookie(undefined, "cadastractf.user");
 
     push("/login");
   }, [push]);
@@ -79,7 +79,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       setUser((prevUser) => {
         setCookie(
           undefined,
-          "m3ctf.user",
+          "cadastractf.user",
           JSON.stringify({ ...user, name, avatar: avatarUrl })
         );
 
@@ -90,7 +90,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   );
 
   const loadStoragedData = async () => {
-    const { "m3ctf.token": token, "m3ctf.user": storagedUser } = parseCookies();
+    const { "cadastractf.token": token, "cadastractf.user": storagedUser } =
+      parseCookies();
 
     if (token && storagedUser) {
       api.defaults.headers.common.authorization = `Bearer ${token}`;

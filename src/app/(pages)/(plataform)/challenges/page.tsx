@@ -25,7 +25,7 @@ export default function Challenges() {
               key={challenge.releaseAt}
               id={challenge.id}
               name={challenge.name}
-              creatorIconUrl="https://app.safecodeweek.com.br/media/logos/crowsec-edtech.jpg"
+              creatorIconUrl="https://cadastra-ctf.s3.amazonaws.com/Foto2.jpeg"
               difficulty={challenge.difficulty}
               iconUrl={challenge.imageUrl}
               releaseAt={challenge.releaseAt}

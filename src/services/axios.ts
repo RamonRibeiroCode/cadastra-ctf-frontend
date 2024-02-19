@@ -2,7 +2,7 @@ import axios from "axios";
 import { destroyCookie, parseCookies } from "nookies";
 
 export const getAPIClient = (ctx?: any) => {
-  const { "m3ctf.token": token } = parseCookies(ctx);
+  const { "cadastractf.token": token } = parseCookies(ctx);
 
   const api = axios.create({
     baseURL: process.env["NEXT_PUBLIC_API_URL"],
@@ -14,8 +14,8 @@ export const getAPIClient = (ctx?: any) => {
     (response) => response,
     (error) => {
       if (error.response.status === 401) {
-        destroyCookie(ctx, "m3ctf.token");
-        destroyCookie(ctx, "m3ctf.user");
+        destroyCookie(ctx, "cadastractf.token");
+        destroyCookie(ctx, "cadastractf.user");
 
         if (isClientSide && window.location.pathname !== "/login") {
           window.location.replace("/login");
