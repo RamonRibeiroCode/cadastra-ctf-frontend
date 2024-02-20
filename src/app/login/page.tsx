@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 
 import LoginForm from "@/components/LoginForm";
 import { useAuth } from "@/contexts/AuthContext";
-import M3Logo from "@/icons/M3Logo";
+import CadastraLogo from "@/icons/CadastraLogo";
 
 export default function Login() {
   const { isAuthenticated, loading } = useAuth();
@@ -22,7 +22,9 @@ export default function Login() {
       {!loading && !isAuthenticated && (
         <>
           <div className="flex flex-col items-center justify-center flex-1 w-full max-w-[500px]">
-            <M3Logo width={128} height={48} />
+            <div className="flex justify-center">
+              <CadastraLogo />
+            </div>
 
             <div className="flex flex-col items-center w-full mt-8 p-12 mx-auto bg-[rgb(23_23_34_/_98%)] rounded-md">
               <span className="block text-white text-center text-2xl font-semibold">

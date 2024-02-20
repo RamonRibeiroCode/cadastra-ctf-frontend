@@ -10,7 +10,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Cadastra CTF",
+  title: "CTF",
   description: "",
 };
 

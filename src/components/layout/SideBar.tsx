@@ -4,7 +4,7 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 
 import DoubleArrow from "@/icons/DoubleArrow";
-import M3Logo from "@/icons/M3Logo";
+import CadastraShortLogo from "@/icons/CadastraShortLogo";
 import MenuItem, { MenuIcon } from "@/components/MenuItem";
 import MenuTitle from "@/components/MenuTitle";
 import Link from "next/link";
@@ -64,7 +64,7 @@ export default function SideBar() {
       >
         {openedOrHovered && (
           <Link href="/">
-            <M3Logo width={38} height={18} />
+            <CadastraShortLogo width={38} height={18} />
           </Link>
         )}
 
