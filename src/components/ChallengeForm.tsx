@@ -10,6 +10,8 @@ import Upload from "./ui/Upload";
 import DifficultySelect from "./ui/DifficultySelect";
 import { difficultyOptions } from "@/constants";
 import { getChallengeDifficultyLabel } from "@/helpers/challenge";
+import UIDatePicker from "./ui/DatePicker";
+import { getReleaseAtISOString } from "@/helpers/format";
 
 interface ChallengeFormProps {
   type: "EDIT" | "CREATE";
@@ -36,7 +38,9 @@ export default function ChallengeForm({
   const [description, setDescription] = useState("");
   const [difficulty, setDifficulty] = useState<Difficulty | null>(null);
   const [url, setUrl] = useState("");
-  const [releaseAt, setReleaseAt] = useState("");
+  const [releaseAtDate, setReleaseAtDate] = useState<null | Date>(null);
+  const [releaseAtTime, setReleaseAtTime] = useState<null | Date>(null);
+
   const [flags, setFlags] = useState<CreateOrEditAdminFlag[]>([
     { id: uuid(), difficulty: "EASY", flag: "", points: 0 },
   ]);
@@ -48,7 +52,7 @@ export default function ChallengeForm({
     useState<CreatedOrEditChallenge | null>(null);
 
   const allFieldsAreFilled = Boolean(
-    name && description && url && difficulty && releaseAt
+    name && description && url && difficulty && releaseAtDate && releaseAtTime
   );
 
   const oneFlagWasAddedAndAllFilled =
@@ -67,6 +71,8 @@ export default function ChallengeForm({
           defaultChallenge.flags.map((flag) => ({ ...flag, id: undefined }))
         );
     }
+
+    const releaseAt = getReleaseAtISOString(releaseAtDate, releaseAtTime);
 
     onSubmit({
       name,
@@ -87,6 +93,8 @@ export default function ChallengeForm({
       if (!defaultChallenge) {
         return false;
       }
+
+      const releaseAt = getReleaseAtISOString(releaseAtDate, releaseAtTime);
 
       const isEditingChallenge =
         name !== defaultChallenge.name ||
@@ -200,7 +208,11 @@ export default function ChallengeForm({
       setDescription(challenge.description);
       setDifficulty(challenge.difficulty);
       setUrl(challenge.url);
-      setReleaseAt(challenge.releaseAt);
+
+      const date = new Date(challenge.releaseAt);
+      setReleaseAtDate(date);
+      setReleaseAtTime(date);
+
       setFlags(challenge.flags.map((flag) => ({ ...flag, id: uuid() })));
 
       setDefaultChallenge(challenge);
@@ -210,8 +222,6 @@ export default function ChallengeForm({
   useEffect(() => {
     getDefaultChallenge();
   }, []);
-
-  console.log(flags);
 
   return (
     <form onSubmit={(e) => handleSubmit(e)} className="flex space-x-4">
@@ -256,11 +266,24 @@ export default function ChallengeForm({
             onSelect={(option) => setDifficulty(option)}
           />
 
-          {/* Change to Date Picker */}
-          <ProfileInput
-            value={releaseAt}
-            onChange={(e) => setReleaseAt(e.target.value)}
-            placeholder="Release At"
+          <UIDatePicker
+            placeholderText="Release at Date"
+            type="date"
+            dateFormat="dd/MM/yyyy"
+            selected={releaseAtDate}
+            onChange={(date) => setReleaseAtDate(date)}
+          />
+
+          <UIDatePicker
+            placeholderText="Release at Time"
+            type="time"
+            showTimeSelect
+            showTimeSelectOnly
+            timeCaption="Time"
+            dateFormat="H:mm"
+            timeIntervals={15}
+            selected={releaseAtTime}
+            onChange={(time) => setReleaseAtTime(time)}
           />
         </div>
 

@@ -4,7 +4,7 @@ export default function Footer() {
       <span className="text-xs text-neutral-gray-tertiary">2024©</span>
       <span className="text-xs text-white mx-1">Cadastra CTF</span>
       <span className="text-xs text-neutral-gray-secondary">
-        Powered by Old Squad C4
+        Powered by RIP Squad C4
       </span>
     </div>
   );

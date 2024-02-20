@@ -10,11 +10,14 @@
   },
   "dependencies": {
     "@radix-ui/react-popover": "^1.0.7",
+    "@stitches/react": "^1.2.8",
     "axios": "^1.5.1",
+    "date-fns": "2.29.3",
     "dayjs": "^1.11.10",
     "next": "latest",
     "nookies": "^2.5.2",
     "react": "latest",
+    "react-datepicker": "^6.1.0",
     "react-dom": "latest",
     "swr": "^2.2.4",
     "uuidv4": "^6.2.13"
@@ -22,6 +25,7 @@
   "devDependencies": {
     "@types/node": "latest",
     "@types/react": "latest",
+    "@types/react-datepicker": "^6.0.1",
     "@types/react-dom": "latest",
     "autoprefixer": "latest",
     "eslint": "latest",

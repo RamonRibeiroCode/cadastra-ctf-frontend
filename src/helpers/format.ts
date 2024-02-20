@@ -78,6 +78,19 @@ export const getFormattedTimeAgo = (dateString: string) => {
   };
 };
 
+export const getReleaseAtISOString = (date: Date, time: Date) => {
+  // INPUT: new Date, new DAte
+  // OUTPUT: 2023-08-21T00:00:00Z
+
+  const dateISOString = date.toISOString();
+  const timeISOString = time.toISOString();
+
+  const [dateString] = dateISOString.split("T");
+  const [, timeString] = timeISOString.split("T");
+
+  return `${dateString}T${timeString}`;
+};
+
 export const jsonToFormData = (json: any) => {
   const formData = new FormData();
 

@@ -47,6 +47,7 @@ export default function UserForm({
       setName(user.name);
       setEmail(user.email);
       setPoints(user.points);
+      setRole(user.role);
 
       setDefaultUser(user);
     }

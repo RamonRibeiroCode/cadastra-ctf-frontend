@@ -238,7 +238,7 @@ export default function ChallengeOverview({
                   height={25}
                   alt=""
                 />
-                Squad C4
+                Ramon
               </p>
             </InfoBlock>
             <InfoBlock extraClasses="mr-4">
