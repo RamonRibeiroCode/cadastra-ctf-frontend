@@ -1,6 +1,6 @@
 import { User } from "@/typings/user";
 import { FormEvent, useEffect, useState } from "react";
-import ProfileInput from "./ui/ProfileInput";
+import ProfileInput from "./ui/Input";
 import api from "@/services/api";
 import { CreatedOrEditUser } from "@/app/(pages)/admin/users/page";
 import { UserRole } from "@/contexts/AuthContext";

@@ -1,6 +1,6 @@
 "use client";
 
-import ProfileInput from "@/components/ui/ProfileInput";
+import ProfileInput from "@/components/ui/Input";
 import api from "@/services/api";
 import { FormEvent, useState } from "react";
 

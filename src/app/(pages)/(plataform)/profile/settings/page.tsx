@@ -1,6 +1,6 @@
 "use client";
 
-import ProfileInput from "@/components/ui/ProfileInput";
+import ProfileInput from "@/components/ui/Input";
 import useSWR from "swr";
 import { fetcher } from "@/lib/swr";
 import { useEffect, useState } from "react";

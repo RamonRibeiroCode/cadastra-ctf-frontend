@@ -21,6 +21,12 @@ const globalStyles = globalCss({
   ".ui-date-picker *": {
     // fontFamily: "Poppins",
   },
+  ".ui-date-picker .react-datepicker__input-container": {
+    display: "flex",
+    alignItems: "center",
+    width: "100%",
+    height: "46px",
+  },
   ".ui-date-picker input": {
     width: "100%",
     backgroundColor: "transparent",
@@ -53,7 +59,7 @@ const globalStyles = globalCss({
 function UIDatePicker({ type, ...otherProps }: DatePickerProps) {
   return (
     <div
-      className={`w-full h-[46px] bg-[#1b1b29] relative flex justify-center items-center rounded-lg py-2 ui-date-picker  ${globalStyles()}`}
+      className={`w-full bg-[#1b1b29] relative flex justify-center items-center ui-date-picker ${globalStyles()}`}
     >
       <div className="mr-4 absolute left-4">
         {type === "date" ? (
@@ -63,7 +69,11 @@ function UIDatePicker({ type, ...otherProps }: DatePickerProps) {
         )}
       </div>
 
-      <DatePicker {...otherProps} locale="pt-BR" />
+      <DatePicker
+        {...otherProps}
+        locale="pt-BR"
+        className="py-2 rounded-lg focus:border border-primary-light"
+      />
     </div>
   );
 }

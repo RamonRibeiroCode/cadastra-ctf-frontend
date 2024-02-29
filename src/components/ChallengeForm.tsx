@@ -1,5 +1,5 @@
 import { FormEvent, useEffect, useState } from "react";
-import ProfileInput from "./ui/ProfileInput";
+import ProfileInput from "./ui/Input";
 import api from "@/services/api";
 import { CreatedOrEditChallenge } from "@/app/(pages)/admin/challenges/page";
 import { Difficulty } from "@/typings/challenge";
