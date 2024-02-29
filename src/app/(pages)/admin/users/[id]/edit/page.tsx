@@ -30,7 +30,7 @@ export default function AdminUserEdit({
   };
 
   return (
-    <AdminWrapper>
+    <AdminWrapper backHref="/admin/users">
       <h1 className="text-3xl text-white mb-6">Editar</h1>
 
       <UserForm type="EDIT" userId={Number(id)} onSubmit={handleSaveUser} />

@@ -61,7 +61,7 @@ export default function AdminChallenges() {
   };
 
   return (
-    <AdminWrapper>
+    <AdminWrapper backHref="/admin">
       <div className="flex justify-between">
         <h1 className="text-white mb-6">Challenges</h1>
         <Link

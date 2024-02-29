@@ -25,7 +25,7 @@ export default function AdminCreateChallenge() {
   };
 
   return (
-    <AdminWrapper>
+    <AdminWrapper backHref="/admin/challenges">
       <div className="flex justify-between">
         <h1 className="text-3xl text-white mb-6">Create Challenge</h1>
       </div>

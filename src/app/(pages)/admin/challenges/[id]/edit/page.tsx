@@ -34,7 +34,7 @@ export default function AdminChallengeEdit({
     push("/admin/challenges");
   };
   return (
-    <AdminWrapper>
+    <AdminWrapper backHref="/admin/challenges">
       <h1 className="text-3xl text-white mb-6">Editar</h1>
 
       <ChallengeForm

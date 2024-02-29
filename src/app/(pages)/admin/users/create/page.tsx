@@ -19,7 +19,7 @@ export default function AdminCreateUser() {
   };
 
   return (
-    <AdminWrapper>
+    <AdminWrapper backHref="/admin/users">
       <div className="flex justify-between">
         <h1 className="text-3xl text-white mb-6">Create User</h1>
       </div>
