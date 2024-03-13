@@ -17,12 +17,14 @@ export default function Feed() {
   }
 
   return (
-    <div className="flex max-w-[945px] mx-auto mt-16">
-      <ul className="w-full">
-        {data.activities.map((feedActivity) => (
-          <FeedPost key={feedActivity.createdAt} {...feedActivity} />
-        ))}
-      </ul>
+    <div className="px-8 mt-16">
+      <div className="flex max-w-[945px] mx-auto">
+        <ul className="w-full">
+          {data.activities.map((feedActivity) => (
+            <FeedPost key={feedActivity.createdAt} {...feedActivity} />
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

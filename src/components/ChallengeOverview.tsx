@@ -103,7 +103,7 @@ export default function ChallengeOverview({
     <div className="bg-primary-default rounded-lg">
       {url && !wasCompletedByUser && (
         <div className="flex border-b border-[#2b2b40] p-7">
-          <div className="w-1/4"></div>
+          <div className="w-1/4 hidden 2xl:block"></div>
 
           <div className="w-1/2 p-4">
             <span className="block text-neutral-gray-secondary font-medium text-center mb-1">

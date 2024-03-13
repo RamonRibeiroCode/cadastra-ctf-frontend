@@ -80,7 +80,7 @@ export default function ChallengeDetail({
   });
 
   return (
-    <div className="my-10">
+    <div className="my-10 px-8">
       <div className="max-w-7xl mx-auto">
         <ChallengeOverview
           id={id}
