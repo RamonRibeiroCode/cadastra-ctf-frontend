@@ -80,10 +80,8 @@ export default function AdminUsers() {
           <tr className="border-0 text-white text-sm">
             <th className="p-0 w-[200px] font-medium text-left">Player</th>
             <th className="p-0 w-[200px] font-medium text-left">E-mail</th>
-            <th className="p-0 w-[20px] font-medium text-left">Points</th>
-            <th className="p-0 w-[100px] font-medium text-end">
-              <span className="flex justify-end items-center">Actions</span>
-            </th>
+            <th className="p-0 w-[80px] font-medium text-left">Points</th>
+            <th className="p-0 w-[55px] font-medium text-left">Actions</th>
           </tr>
         </thead>
 

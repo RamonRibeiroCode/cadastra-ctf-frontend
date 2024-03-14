@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #151521;
+  border-radius: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #fff;
+  border-radius: 8px;
+}
+
 /* MOVE TO TAILWIND CONFIG */
 
 .floating {

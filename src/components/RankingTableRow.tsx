@@ -67,9 +67,9 @@ export default function RankingTableRow({
 
       <td className="py-4">
         <div className="flex flex-col ml-4">
-          <a href="#" className="text-white font-medium text-sm">
+          <span className="text-white font-medium text-sm">
             {getLowerSnakeName(userName)}
-          </a>
+          </span>
 
           {wasFirstBlood && (
             <div className="flex text-xs font-medium text-neutral-gray-quaternary">

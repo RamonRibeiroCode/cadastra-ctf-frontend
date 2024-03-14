@@ -22,7 +22,7 @@ export default function Hacktivity({
   createdAt,
 }: Readonly<HacktivityProps>) {
   return (
-    <div className="flex mb-10">
+    <div className="flex mb-10 last:mb-0">
       <div className="relative">
         <div className="w-10 h-10 relative z-10 flex justify-center items-center rounded-full text-[#0bb783] bg-neutral-gray-senary">
           <Flag />

@@ -66,6 +66,7 @@ export interface ScoreboardDetail {
 }
 
 interface ScoreboardDetailUser {
+  id: number;
   name: string;
   avatarUrl: string;
 }

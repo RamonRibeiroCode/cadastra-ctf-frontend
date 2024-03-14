@@ -138,28 +138,30 @@ export default function ChallengeDetail({
                 </span>
               </div>
 
-              <RankingTable scoreboard={scoreboard} />
+              <RankingTable scoreboard={scoreboard} userId={user.id} />
             </div>
             <div className="flex-1">
               <div className="flex items-center text-xs font-medium text-white mb-10">
                 <ListNested />
 
-                <span className="mx-2">Hacktivity </span>
+                <span className="mx-2 mr-1">Hacktivity</span>
 
                 <span className="text-neutral-gray-tertiary">
                   - Últimas atividades neste desafio
                 </span>
               </div>
 
-              {flagsActivities.map((activity) => (
-                <Hacktivity
-                  key={activity.createdAt}
-                  createdAt={activity.createdAt}
-                  userName={activity.user.name}
-                  flagDifficulty={activity.flag.difficulty}
-                  flagPoints={activity.flag.points}
-                />
-              ))}
+              <ul className="max-h-[730px] overflow-auto custom-scrollbar">
+                {flagsActivities.map((activity) => (
+                  <Hacktivity
+                    key={activity.createdAt}
+                    createdAt={activity.createdAt}
+                    userName={activity.user.name}
+                    flagDifficulty={activity.flag.difficulty}
+                    flagPoints={activity.flag.points}
+                  />
+                ))}
+              </ul>
             </div>
           </div>
         </div>

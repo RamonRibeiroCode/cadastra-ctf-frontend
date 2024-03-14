@@ -4,11 +4,28 @@ import { ScoreboardDetail } from "@/typings/challenge";
 
 interface RankingTableProps {
   scoreboard: ScoreboardDetail[];
+  userId: number;
 }
 
 export default function RankingTable({
   scoreboard,
+  userId,
 }: Readonly<RankingTableProps>) {
+  const firstTenUsers = scoreboard.slice(0, 10);
+  const userRankingIndex = scoreboard.findIndex(
+    (scoreboardItem) => scoreboardItem.user.id === userId
+  );
+  const userRanking = scoreboard[userRankingIndex];
+  const userTopTenRanking = firstTenUsers.some(
+    (scoreboardItem) => scoreboardItem.user.id === userId
+  );
+
+  const isCompletedAfterTenUsers = userRanking && !userTopTenRanking;
+
+  console.log(userRankingIndex);
+  console.log(userRanking);
+  console.log(userTopTenRanking);
+
   return (
     <div className="table-responsive mt-10">
       <table className="table table-row-dashed table-row-gray-200 align-middle gs-0 gy-4">
@@ -26,9 +43,9 @@ export default function RankingTable({
           </tr>
         </thead>
         <tbody>
-          {scoreboard.map((item, index) => (
+          {firstTenUsers.map((item, index) => (
             <RankingTableRow
-              key={item.user.avatarUrl}
+              key={item.user.name + item.user.avatarUrl}
               position={index + 1}
               userAvatarUrl={item.user.avatarUrl}
               userName={item.user.name}
@@ -36,6 +53,17 @@ export default function RankingTable({
               executionTime={item.executionTime}
             />
           ))}
+
+          {isCompletedAfterTenUsers && (
+            <RankingTableRow
+              key={userRanking.user.name + userRanking.user.avatarUrl}
+              position={userRankingIndex + 1}
+              userAvatarUrl={userRanking.user.avatarUrl}
+              userName={userRanking.user.name}
+              wasFirstBlood={false}
+              executionTime={userRanking.executionTime}
+            />
+          )}
         </tbody>
       </table>
     </div>

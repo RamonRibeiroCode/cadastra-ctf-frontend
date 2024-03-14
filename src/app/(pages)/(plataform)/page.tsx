@@ -16,7 +16,7 @@ export default function Home() {
 
           <Link
             className="mt-6 flex items-center bg-primary-default rounded-lg px-6 py-4 space-x-2 text-neutral-gray hover:bg-[#212e48] hover:text-[#3699ff]"
-            href="/profile"
+            href="/profile/overview"
           >
             Perfil
           </Link>

@@ -53,6 +53,10 @@ export default function Upload({
       <span className="block text-xs text-neutral-gray-tertiary mt-3">
         Allowed file types: png, jpg, jpeg.
       </span>
+
+      <span className="block text-xs text-neutral-gray-tertiary mt-3">
+        5MB maximum limit
+      </span>
     </>
   );
 }

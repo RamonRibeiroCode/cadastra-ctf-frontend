@@ -59,9 +59,9 @@ export default function RankingTableRow({
       </td>
       <td className="py-6">
         <div className="flex flex-col ml-4">
-          <a href="#" className="text-white font-medium text-md">
+          <span className="text-white font-medium text-md">
             {getLowerSnakeName(scoreboardUser.name)}
-          </a>
+          </span>
 
           <div className="flex items-center text-sm font-medium text-neutral-gray-quaternary">
             <span>{scoreboardUser.firstBloods} First Blood</span>

@@ -75,12 +75,10 @@ export default function AdminChallenges() {
       <table className="w-full max-w-5xl mx-auto">
         <thead>
           <tr className="border-0 text-white text-sm">
-            <th className="p-0 w-[200px] font-medium text-left">Challenge</th>
-            <th className="p-0 w-[200px] font-medium text-left">Difficulty</th>
-            <th className="p-0 w-[20px] font-medium text-left">Points</th>
-            <th className="p-0 w-[100px] font-medium text-end">
-              <span className="flex justify-end items-center">Actions</span>
-            </th>
+            <th className="p-0 w-[360px] font-medium text-left">Challenge</th>
+            <th className="p-0 w-[240px] font-medium text-left">Difficulty</th>
+            <th className="p-0 w-[170px] font-medium text-left">Points</th>
+            <th className="p-0 w-[20px] font-medium text-left">Actions</th>
           </tr>
         </thead>
 
