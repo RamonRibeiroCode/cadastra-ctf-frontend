@@ -9,7 +9,6 @@ export default function Input({ errorMessage, ...props }: InputProps) {
     <div className="block w-full">
       <input
         className="w-full h-[46px] bg-[#1b1b29] px-5 py-[10px] rounded-lg outline-none text-sm text-[#92929f] focus:border border-primary-light placeholder:text-neutral-gray-tertiary"
-        maxLength={32}
         {...props}
       />
 
